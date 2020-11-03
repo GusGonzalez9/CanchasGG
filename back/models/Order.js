@@ -1,7 +1,5 @@
-const { VIRTUAL } = require('sequelize')
 const S = require('sequelize')
 const db = require('../db')
-const Product = require('./Product')
 
 class Order extends S.Model{}
 Order.init(
@@ -11,8 +9,8 @@ Order.init(
             allowNull: false
         },
         subtotal: {
-            type: S.VIRTUAL,
-            get(){return Product.findByPk(this.productId * this.units)}
+            type: S.NUMBER,
+            allowNull: true
         },
     }, {sequelize: db, modelName: 'order'}
 )

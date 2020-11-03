@@ -1,6 +1,6 @@
 const S = require('sequelize')
 const db = require('../db')
-const Interaction = require('./Interaction')
+const Rate = require('./Rate')
 
 class Product extends S.Model{}
 Product.init(
@@ -14,7 +14,7 @@ Product.init(
             allowNull: true
         },
         price: {
-            type: S.NUMBER,
+            type: S.FLOAT,
             allowNull: false,
             get(){
                 return `$ ${this.getDataValue('price')}`
@@ -32,7 +32,7 @@ Product.init(
 )
 
 Product.prototype.getRate = function(){
-    Interaction.findAll({where: {'productId': this.id, type:'rate'}})
+    return Rate.findAll({where: {'productId': this.id}})
         .then(data => {
             let rate = 0    
             data.forEach(e => {rate += e.content})

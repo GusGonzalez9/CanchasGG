@@ -4,15 +4,15 @@ const db = require('../db')
 class Purchase extends S.Model{}
 Purchase.init(
     {
-        total: {
-            type: S.NUMBER,
-            allowNull: true
-        },
         status: {
             type: S.ENUM({
                 values: ['completed', 'pending']
             })
-        }
+        },
+        total: {
+            type: S.NUMBER,
+            allowNull: true
+        },
     }, {sequelize: db, modelName: 'purchase'}
 )
 
