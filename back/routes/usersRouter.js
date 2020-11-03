@@ -3,11 +3,11 @@ const router = express.Router()
 const passport = require('passport')
 const {getUsers, addUser, getOneUser, validateUser, logoutUser} = require('./controllers/user-controllers')
 
-router.get('/', getUsers)
-router.post('/', addUser)
-router.get('/me', validateUser)
-router.get('/:id', getOneUser)
-router.post('/login', passport.authenticate('local'), validateUser)
-router.post('/logout', logoutUser)
+router.get("/", getUsers);
+router.post("/", addUser);
+router.get("/me", validateUser);
+router.get("/:id", getOneUser);
+router.post("/login", passport.authenticate("local"), validateUser);
+router.post("/logout", logoutUser);
 
-module.exports = router
+module.exports = router;
