@@ -40,7 +40,7 @@ User.init(
             type:S.ENUM({
                 values: ['basic', 'admin', 'super']
               }),
-            defaultValue: false,
+            defaultValue: 'basic',
 
         },
     }, {sequelize: db, modelName: 'user'}

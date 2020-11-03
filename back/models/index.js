@@ -9,18 +9,21 @@ const Purchase = require('./Purchase')
 const Order = require('./Order')
 
 // Products' images
-Product.hasMany(Image, {as: 'productId'})
+Product.hasMany(Image)
 
 // Products' categories
 Product.belongsToMany(Category, {through: 'product_category'})
 Category.belongsToMany(Product, {through: 'product_category'})
 
 // Products' comments
+Comment.hasOne(Product)
 Product.hasMany(Comment)
-Comment.belongsTo(User)
+User.hasMany(Comment)
+
 // Products' rates
+Rate.hasOne(Product)
 Product.hasMany(Rate)
-Rate.belongsTo(User)
+User.hasMany(Rate)
 
 // // Orders & purchases
 Order.belongsTo(Product)

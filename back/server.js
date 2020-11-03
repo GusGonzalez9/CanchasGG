@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const db = require("./db");
 const routes = require("./routes");
-const bodyParser = require("body-parser");
 
 //Auth requirementes
 const session = require("express-session");
