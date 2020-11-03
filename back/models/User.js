@@ -36,9 +36,12 @@ User.init(
         salt: {
             type: S.STRING
         },
-        isAdmin: {
-            type: S.BOOLEAN,
+        access: {
+            type:S.ENUM({
+                values: ['basic', 'admin', 'super']
+              }),
             defaultValue: false,
+
         },
     }, {sequelize: db, modelName: 'user'}
 )
