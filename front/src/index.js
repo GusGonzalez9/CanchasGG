@@ -2,13 +2,14 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route } from 'react-router-dom';
-import {Provider} from 'react-redux'
+import { BrowserRouter, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import "./styles/style.css";
 import Main from "./Main";
-import store from './store'
+import store from "./store";
 ReactDOM.render(
   <BrowserRouter>
     <Route path="/" component={Main} />
   </BrowserRouter>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
