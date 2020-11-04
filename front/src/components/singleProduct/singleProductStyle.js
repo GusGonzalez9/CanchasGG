@@ -101,10 +101,25 @@ const style = {
     
   },
   userCommentBox:{
+    display:'flex',
     flexDirection:'row',
     justifyContent:'center',
     alignItems:'center',
     alignContent:'center'
+  },
+  commentsBox:{
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center',
+    alignContent:'center',
+    border:'1px dot grey',
+    padding: 5
+  },
+  commentBoxUser:{
+    color: 'black',
+    fontWeight: 900,
+    marginRight: 10
   }
   
 };
