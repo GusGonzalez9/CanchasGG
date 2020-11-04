@@ -1,3 +1,4 @@
+
 const path = require('path')
 
 module.exports = {
@@ -40,10 +41,12 @@ module.exports = {
             options: {
               modules: {
                 mode: "local",
+
                 localIdentName: "[path][name]__[local]--[hash:base64:5]",               
               }
             }
           },       
+
         ],
       },
       {
