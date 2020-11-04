@@ -7,14 +7,14 @@ const getProducts = (req, res) => {
 }
 
 const addComment = (req, res, next) => {
-    // req.user
+    // req.user.addComment()
     Comment.create({...req.body, productId: req.params.id})
     .then(data => res.status(201).send(data))
     .catch(next)
 }
 
 const addRate = (req, res, next) => {
-    // req.user
+    // req.user.addComment()
     Rate.create({...req.body, productId: req.params.id})
     .then(data => res.status(201).send(data))
     .catch(next)

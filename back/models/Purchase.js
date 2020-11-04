@@ -13,6 +13,10 @@ Purchase.init(
             type: S.FLOAT,
             allowNull: true
         },
+        adress: {
+            type: S.TEXT,
+            allowNull: false
+        },
     }, {sequelize: db, modelName: 'purchase'}
 )
 

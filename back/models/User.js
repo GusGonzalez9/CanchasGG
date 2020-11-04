@@ -27,7 +27,7 @@ User.init(
         },
         avatar: {
             type: S.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         password: {
             type: S.STRING,

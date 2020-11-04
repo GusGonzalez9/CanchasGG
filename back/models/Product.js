@@ -1,6 +1,5 @@
 const S = require("sequelize");
 const db = require("../db");
-const Rate = require("./Rate");
 
 class Product extends S.Model {}
 Product.init(
@@ -27,6 +26,10 @@ Product.init(
     off: {
       type: S.INTEGER,
       defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 100,
+      }
     },
   },
   { sequelize: db, modelName: "product" }
