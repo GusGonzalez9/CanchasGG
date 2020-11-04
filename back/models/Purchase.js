@@ -13,6 +13,11 @@ Purchase.init(
             type: S.FLOAT,
             allowNull: true
         },
+        delivery:{
+            type: S.BOOLEAN,
+            allowNull: false,
+            defaultValue: true,
+        },
         adress: {
             type: S.TEXT,
             allowNull: false
