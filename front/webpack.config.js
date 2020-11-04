@@ -1,14 +1,15 @@
-const path = require("path");
+
+const path = require('path')
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.js",
+  mode: 'development',
+  entry: './src/index.js',
   output: {
     filename: "bundle.js",
-    path: __dirname + "/../back/public",
+    path: __dirname + '/../back/public'
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: ['.js', '.jsx']
   },
   context: __dirname,
   module: {
@@ -16,11 +17,18 @@ module.exports = {
       {
         test: /jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         query: {
-          presets: ["@babel/preset-react", "@babel/env"],
-          plugins: [["@babel/plugin-proposal-class-properties"]],
-        },
+          presets: [
+            "@babel/preset-react",
+            "@babel/env"
+          ],
+          "plugins": [
+            [
+              "@babel/plugin-proposal-class-properties"
+            ]
+          ]
+        }
       },
       {
         test: /.(css)$/,
@@ -33,25 +41,23 @@ module.exports = {
             options: {
               modules: {
                 mode: "local",
-                localIdentName: "[path][name]__[local]--[hash:base64:5]",
-                /*  context: path.resolve(__dirname, "styles"), */
-              },
-            },
-          },
-          {
-            loader: "postcss-loader",
-          },
+
+                localIdentName: "[path][name]__[local]--[hash:base64:5]",               
+              }
+            }
+          },       
+
         ],
       },
       {
         test: /.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
           },
         ],
       },
-    ],
+    ]
   },
-  devtool: "source-map",
-};
+  devtool: 'source-map'
+}
