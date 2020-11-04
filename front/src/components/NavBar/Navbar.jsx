@@ -181,6 +181,15 @@ export default function PrimarySearchAppBar() {
                   Register
                 </Link>
               </Button>
+                 <Button variant="contained" color="default" style={style.button}>
+        Log Out
+      </Button>
+            
+            <img style={style.buttonUser} edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen} src="https://bocashop.vteximg.com.br/arquivos/account.png" alt="" srcset=""/>
               <IconButton
                 edge="end"
                 aria-label="account of current user"

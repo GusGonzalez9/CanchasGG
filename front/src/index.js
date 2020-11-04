@@ -7,11 +7,16 @@ import { Provider } from "react-redux";
 import "./styles/style.css";
 import Main from "./Main";
 import store from "./store";
+
+
+
+
 ReactDOM.render(
   <Provider store={store}>
-  <BrowserRouter>
-    <Route path="/" component={Main} />
-  </BrowserRouter>
+    <BrowserRouter>
+      <Route path="/" component={Main} />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
+

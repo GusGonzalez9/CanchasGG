@@ -3,9 +3,10 @@ import { Route, Switch, Redirect, component } from "react-router-dom";
 
 import NavbarContainer from "./components/NavBar/NavbarContainer";
 import FooterContainer from "./components/footer/FooterContainer";
-import singleProduct from "./components/singleProduct/singleProduct";
 import RegisterContainer from './components/Register/RegisterContainer'
 import LoginContainer from './components/Login/LoginContainer'
+import singleProductContainer from "./components/singleProduct/singleProductContainer";
+
 class Main extends React.Component {
   render() {
     return (
@@ -14,6 +15,7 @@ class Main extends React.Component {
         <Switch>
         <Route exact path="/" component={NavbarContainer} />
         <Route exact path="/products" component={singleProduct} />
+        <Route path="/products/:id" component={singleProductContainer} />
         </Switch>
          <FooterContainer /> 
          <Switch>

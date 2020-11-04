@@ -25,6 +25,11 @@
   },
   link:{
     textDecoration:'none'
+  },
+  buttonUser:{
+    width:25,
+    height:25,
+    marginTop: 10
   }
 
 }
