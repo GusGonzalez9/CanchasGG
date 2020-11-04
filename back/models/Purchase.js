@@ -10,7 +10,7 @@ Purchase.init(
             })
         },
         total: {
-            type: S.NUMBER,
+            type: S.FLOAT,
             allowNull: true
         },
     }, {sequelize: db, modelName: 'purchase'}

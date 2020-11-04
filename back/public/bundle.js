@@ -55777,54 +55777,54 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["ma
       marginRight: theme.spacing(2)
     },
     title: _defineProperty({
-      display: "none"
-    }, theme.breakpoints.up("sm"), {
-      display: "block"
+      display: 'none'
+    }, theme.breakpoints.up('sm'), {
+      display: 'block'
     }),
     search: _defineProperty({
-      position: "relative",
+      position: 'relative',
       borderRadius: theme.shape.borderRadius,
       backgroundColor: Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["fade"])(theme.palette.common.white, 0.15),
-      "&:hover": {
+      '&:hover': {
         backgroundColor: Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["fade"])(theme.palette.common.white, 0.25)
       },
       marginRight: theme.spacing(2),
       marginLeft: 0,
-      width: "100%"
-    }, theme.breakpoints.up("sm"), {
+      width: '100%'
+    }, theme.breakpoints.up('sm'), {
       marginLeft: theme.spacing(3),
-      width: "auto"
+      width: 'auto'
     }),
     searchIcon: {
       padding: theme.spacing(0, 2),
-      height: "100%",
-      position: "absolute",
-      pointerEvents: "none",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
+      height: '100%',
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
     },
     inputRoot: {
-      color: "inherit"
+      color: 'inherit'
     },
     inputInput: _defineProperty({
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: "calc(1em + ".concat(theme.spacing(4), "px)"),
-      transition: theme.transitions.create("width"),
-      width: "100%"
-    }, theme.breakpoints.up("md"), {
-      width: "20ch"
+      transition: theme.transitions.create('width'),
+      width: '100%'
+    }, theme.breakpoints.up('md'), {
+      width: '20ch'
     }),
     sectionDesktop: _defineProperty({
-      display: "none"
-    }, theme.breakpoints.up("md"), {
-      display: "flex"
+      display: 'none'
+    }, theme.breakpoints.up('md'), {
+      display: 'flex'
     }),
     sectionMobile: _defineProperty({
-      display: "flex"
-    }, theme.breakpoints.up("md"), {
-      display: "none"
+      display: 'flex'
+    }, theme.breakpoints.up('md'), {
+      display: 'none'
     })
   };
 });
@@ -55861,18 +55861,18 @@ function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  var menuId = "primary-search-account-menu";
+  var menuId = 'primary-search-account-menu';
   var renderMenu = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_9__["default"], {
     anchorEl: anchorEl,
     anchorOrigin: {
-      vertical: "top",
-      horizontal: "right"
+      vertical: 'top',
+      horizontal: 'right'
     },
     id: menuId,
     keepMounted: true,
     transformOrigin: {
-      vertical: "top",
-      horizontal: "right"
+      vertical: 'top',
+      horizontal: 'right'
     },
     open: isMenuOpen,
     onClose: handleMenuClose
@@ -55881,18 +55881,18 @@ function PrimarySearchAppBar() {
   }, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_8__["default"], {
     onClick: handleMenuClose
   }, "My account"));
-  var mobileMenuId = "primary-search-account-menu-mobile";
+  var mobileMenuId = 'primary-search-account-menu-mobile';
   var renderMobileMenu = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Menu__WEBPACK_IMPORTED_MODULE_9__["default"], {
     anchorEl: mobileMoreAnchorEl,
     anchorOrigin: {
-      vertical: "top",
-      horizontal: "right"
+      vertical: 'top',
+      horizontal: 'right'
     },
     id: mobileMenuId,
     keepMounted: true,
     transformOrigin: {
-      vertical: "top",
-      horizontal: "right"
+      vertical: 'top',
+      horizontal: 'right'
     },
     open: isMobileMenuOpen,
     onClose: handleMobileMenuClose
@@ -55903,7 +55903,7 @@ function PrimarySearchAppBar() {
     "aria-controls": "primary-search-account-menu",
     "aria-haspopup": "true",
     color: "inherit"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_12___default.a, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_12___default.a, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Profile")));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.grow
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -55924,7 +55924,7 @@ function PrimarySearchAppBar() {
       input: classes.inputInput
     },
     inputProps: {
-      "aria-label": "search"
+      'aria-label': 'search'
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.grow

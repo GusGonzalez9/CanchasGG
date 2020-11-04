@@ -16,16 +16,16 @@ Product.belongsToMany(Category, { through: "product_category" });
 Category.belongsToMany(Product, { through: "product_category" });
 
 // Products' comments
-Comment.hasOne(Product)
+Comment.belongsTo(Product)
 Product.hasMany(Comment)
 User.hasMany(Comment)
 
 // Products' rates
-Rate.hasOne(Product)
+Rate.belongsTo(Product)
 Product.hasMany(Rate)
 User.hasMany(Rate)
 
-// // Orders & purchases
+// Orders & purchases
 Order.belongsTo(Product);
 Order.belongsTo(Purchase);
 Purchase.hasMany(Order);
