@@ -1,23 +1,23 @@
 import React from "react";
 import style from "./FooterStyle";
 import Button from "@material-ui/core/Button";
+import { TextField } from "@material-ui/core";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+import TwitterIcon from "@material-ui/icons/Twitter";
 
 export default function Footer() {
   return (
-    <div className="container" style={style.contened}>
+    <div style={style.contened}>
       <form style={style.formulario}>
-        <div style={style.input} className="form-group">
-          <input
-            style={style.inputHijo}
-            type="email"
-            id="exampleInputEmail"
-            placeholder="Email please"
-          />
-          <Button variant="container" color="default" style={style.button}>
-            Enviar
+        <div style={style.input}>
+          <TextField id="standard-basic" label="E-mail" />
+          <Button variant="contained" color="default" style={style.button}>
+            subscribe
           </Button>
         </div>
-        <div className="contened">
+        <div>
           <ul style={style.IconList}>
             <li style={style.List}>Productos</li>
             <li style={style.List}>Promociones </li>
@@ -27,29 +27,13 @@ export default function Footer() {
             <li style={style.List}>Ayuda </li>
           </ul>
           <ul style={style.contened2}>
-            <li style={style.Item}>
-              <a style={style.iconos} href="#" target="_blank">
-                <i className="fab fa-instagram"></i>
-              </a>
-            </li>
-            <li style={style.Item}>
-              <a style={style.iconos} href="#" target="_blank">
-                <i className="fab fa-facebook"></i>
-              </a>
-            </li>
-            <li style={style.Item}>
-              <a style={style.iconos} href="#" target="_blank">
-                <i className="fab fa-twitter"></i>
-              </a>
-            </li>
-            <li style={style.Item}>
-              <a style={style.iconos} href="#" target="_blank">
-                <i className="fab fa-whatsapp"></i>
-              </a>
-            </li>
+            <InstagramIcon color="disabled" />
+            <WhatsAppIcon color="disabled" />
+            <FacebookIcon color="disabled" />
+            <TwitterIcon color="disabled" />
           </ul>
           <div style={style.p}>
-            <p>© 1905</p>
+            <p>© 2020 Copyright: 1905 e-commerce </p>
           </div>
         </div>
       </form>
