@@ -8,15 +8,16 @@ import style from "./singleProductStyle";
 
 import styless from "./SingleProductStyles.css";
 
-export default function singleProduct() {
+export default function singleProduct({ product }) {
+  const src =
+    "https://gamedustria.com/wp-content/uploads/2015/06/PlayStation_4.png";
+
   return (
     <div className={styless.everyFather}>
       <Breadcrumbs aria-label="breadcrumb">
         <Link color="inherit">Home</Link>
         <Link color="inherit">Productos</Link>
-        <Typography color="textPrimary">
-          NOMBRE DEL PRODUCTO PASADO POR PROPS
-        </Typography>
+        <Typography color="textPrimary">{product.name}</Typography>
       </Breadcrumbs>
 
       <div style={style.fatherAllSingleProduct}>
@@ -46,16 +47,16 @@ export default function singleProduct() {
 
         <div style={style.descriptionFather}>
           {/* DESCRIPCION DEL PRODUCTO */}
-          <h1 className={styless.hola}>NOMBRE DEL PRODUCTO PASADO POR PROPS</h1>
-          <h1 style={style.price}>$126</h1>
-          <h2 style={style.oferta}>¡OFERTA 25% EN ESTE PRODUCTO!</h2>
-          <p style={style.littleDescription}>
-            Breve descripcion del producto: Lorem ipsum dolor, sit amet
-            consectetur adipisicing elit. Soluta, earum! amet consectetur
-            adipisicing elit. Solut amet consectetur adipisicing elit. Solut
-            adipisicing elit. Solut amet consectetur adipisicing elit. Solut
-            adipisicing elit. Solut amet consectetur adipisicing elit. Solut
-          </p>
+          <h1 className={styless.hola}>{product.name}</h1>
+          <h1 style={style.price}>{product.price}</h1>
+
+          {product.off ? (
+            <h2 style={style.oferta}>
+              ¡OFERTA {product.off}% EN ESTE PRODUCTO!
+            </h2>
+          ) : null}
+
+          <p style={style.littleDescription}>{product.description}</p>
           <div>
             <p style={style.textCantidad}>Cantidad</p>
             <input style={style.inputCantidad} type="number" /> <br />
@@ -87,21 +88,48 @@ export default function singleProduct() {
         <span>3 Comentarios</span>
         <hr style={style.hr} />
         <div style={style.userCommentBox}>
-          <img style={style.avatarComment} src="https://avatarfiles.alphacoders.com/126/126912.png" />
+          <img
+            style={style.avatarComment}
+            src="https://avatarfiles.alphacoders.com/126/126912.png"
+          />
           <input
             style={style.inputComment}
             placeholder="Inserte comentario..."
             type="text"
           />
-           <Button
-              variant="contained"
-              color="default"
-              style={style.commentUserButton}
-            >
-              Enviar
-            </Button>
+          <Button
+            variant="contained"
+            color="default"
+            style={style.commentUserButton}
+          >
+            Enviar
+          </Button>
         </div>
       </div>
+      <hr style={style.hr} />
+      <div>
+        <div style={style.commentsBox}>
+        <img
+          style={style.avatarComment}
+          src="https://avatarfiles.alphacoders.com/126/126912.png"
+        />
+        <span style={style.commentBoxUser}>UserName :</span>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+          Exercitationem quam molestiae totam voluptates, expedita doloremque.
+        </p>
+        
+      </div>
+      <Button
+              variant="contained"
+              color="default"
+              style={style.buttonColorDelete}
+            >
+              Eliminar Comentario
+            </Button>
+      <hr style={style.hr} />
+      </div>
+      
     </div>
   );
 }

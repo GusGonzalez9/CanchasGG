@@ -176,16 +176,15 @@ export default function PrimarySearchAppBar() {
       <Button variant="contained" color="default" style={style.button}>
         Register
       </Button>
-            <IconButton
-              edge="end"
+      <Button variant="contained" color="default" style={style.button}>
+        Log Out
+      </Button>
+            
+            <img style={style.buttonUser} edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+              onClick={handleProfileMenuOpen} src="https://bocashop.vteximg.com.br/arquivos/account.png" alt="" srcset=""/>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
