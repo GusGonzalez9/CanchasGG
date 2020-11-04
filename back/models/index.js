@@ -1,32 +1,44 @@
-const db = require('../db')
-const User = require('./User')
-const Product = require('./Product')
-const Image = require('./Image')
-const Category =  require('./Category')
-const Comment = require('./Comment')
-const Rate = require('./Rate')
-const Purchase = require('./Purchase')
-const Order = require('./Order')
+const db = require("../db");
+const User = require("./User");
+const Product = require("./Product");
+const Image = require("./Image");
+const Category = require("./Category");
+const Comment = require("./Comment");
+const Rate = require("./Rate");
+const Purchase = require("./Purchase");
+const Order = require("./Order");
 
 // Products' images
-Product.hasMany(Image, {as: 'productId'})
+Product.hasMany(Image)
 
 // Products' categories
-Product.belongsToMany(Category, {through: 'product_category'})
-Category.belongsToMany(Product, {through: 'product_category'})
+Product.belongsToMany(Category, { through: "product_category" });
+Category.belongsToMany(Product, { through: "product_category" });
 
 // Products' comments
+Comment.belongsTo(Product)
 Product.hasMany(Comment)
-Comment.belongsTo(User)
+User.hasMany(Comment)
+
 // Products' rates
+Rate.belongsTo(Product)
 Product.hasMany(Rate)
-Rate.belongsTo(User)
+User.hasMany(Rate)
 
-// // Orders & purchases
-Order.belongsTo(Product)
-Order.belongsTo(Purchase)
-Purchase.hasMany(Order)
-Purchase.belongsTo(User)
-User.hasMany(Purchase)
+// Orders & purchases
+Order.belongsTo(Product);
+Order.belongsTo(Purchase);
+Purchase.hasMany(Order);
+Purchase.belongsTo(User);
+User.hasMany(Purchase);
 
-module.exports = {db, User, Product, Image, Category, Comment, Rate, Purchase}
+module.exports = {
+  db,
+  User,
+  Product,
+  Image,
+  Category,
+  Comment,
+  Rate,
+  Purchase,
+};

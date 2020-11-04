@@ -1,12 +1,12 @@
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
+  mode: "development",
+  entry: "./src/index.js",
   output: {
     filename: "bundle.js",
-    path: __dirname + '/../back/public'
+    path: __dirname + "/../back/public",
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"],
   },
   context: __dirname,
   module: {
@@ -14,30 +14,20 @@ module.exports = {
       {
         test: /jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-          presets: [
-            "@babel/preset-react",
-            "@babel/env"
-          ],
-          "plugins": [
-            [
-              "@babel/plugin-proposal-class-properties"
-            ]
-          ]
-        }
+          presets: ["@babel/preset-react", "@babel/env"],
+          plugins: [["@babel/plugin-proposal-class-properties"]],
+        },
       },
       {
-        test: /.(css|sass|scss)$/,
+        test: /.(css)$/,
         use: [
           {
             loader: "style-loader",
           },
           {
             loader: "css-loader",
-          },
-          {
-            loader: "sass-loader",
           },
           {
             loader: "postcss-loader",
@@ -48,11 +38,11 @@ module.exports = {
         test: /.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
           },
         ],
       },
-    ]
+    ],
   },
-  devtool: 'source-map'
-}
+  devtool: "source-map",
+};

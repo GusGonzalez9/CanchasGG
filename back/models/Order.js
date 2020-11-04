@@ -9,7 +9,7 @@ Order.init(
             allowNull: false
         },
         subtotal: {
-            type: S.NUMBER,
+            type: S.FLOAT,
             allowNull: true
         },
     }, {sequelize: db, modelName: 'order'}
