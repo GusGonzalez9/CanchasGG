@@ -1,4 +1,4 @@
-const { Product, Comment, Rate } = require("../models");
+const { Product, Comment, Rate } = require("../../models");
 
 const getProducts = (req, res) => {
     Product.findAll().then((productos) => {
