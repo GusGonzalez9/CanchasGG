@@ -6,9 +6,11 @@ import Button from "@material-ui/core/Button";
 
 import style from "./singleProductStyle";
 
+import styless from "./SingleProductStyles.css";
+
 export default function singleProduct() {
   return (
-    <div style={style.everyFather}>
+    <div className={styless.everyFather}>
       <Breadcrumbs aria-label="breadcrumb">
         <Link color="inherit">Home</Link>
         <Link color="inherit">Productos</Link>
@@ -32,9 +34,6 @@ export default function singleProduct() {
             style={style.littleImg}
             src="https://i1.wp.com/regionps.com/wp-content/uploads/2018/04/image-a.png?resize=700%2C478"
           />
-         
-         
-
         </div>
 
         <div>
@@ -47,7 +46,7 @@ export default function singleProduct() {
 
         <div style={style.descriptionFather}>
           {/* DESCRIPCION DEL PRODUCTO */}
-          <h1>NOMBRE DEL PRODUCTO PASADO POR PROPS</h1>
+          <h1 className={styless.hola}>NOMBRE DEL PRODUCTO PASADO POR PROPS</h1>
           <h1 style={style.price}>$126</h1>
           <h2 style={style.oferta}>¡OFERTA 25% EN ESTE PRODUCTO!</h2>
           <p style={style.littleDescription}>
@@ -60,10 +59,47 @@ export default function singleProduct() {
           <div>
             <p style={style.textCantidad}>Cantidad</p>
             <input style={style.inputCantidad} type="number" /> <br />
-            <Button variant="contained" color="default" style={style.buttonColor}>
+            <Button
+              variant="contained"
+              color="default"
+              style={style.buttonColor}
+            >
               Agregar al Carrito
             </Button>
+            <Button
+              variant="contained"
+              color="default"
+              style={style.buttonColorEdit}
+            >
+              Editar Producto
+            </Button>
+            <Button
+              variant="contained"
+              color="default"
+              style={style.buttonColorDelete}
+            >
+              Eliminar
+            </Button>
           </div>
+        </div>
+      </div>
+      <div style={style.commentBox}>
+        <span>3 Comentarios</span>
+        <hr style={style.hr} />
+        <div style={style.userCommentBox}>
+          <img style={style.avatarComment} src="https://avatarfiles.alphacoders.com/126/126912.png" />
+          <input
+            style={style.inputComment}
+            placeholder="Inserte comentario..."
+            type="text"
+          />
+           <Button
+              variant="contained"
+              color="default"
+              style={style.commentUserButton}
+            >
+              Enviar
+            </Button>
         </div>
       </div>
     </div>
