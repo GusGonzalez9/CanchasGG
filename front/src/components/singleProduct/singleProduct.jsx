@@ -8,9 +8,8 @@ import style from "./singleProductStyle";
 
 import styless from "./SingleProductStyles.css";
 
+
 export default function singleProduct({ product }) {
-  const src =
-    "https://gamedustria.com/wp-content/uploads/2015/06/PlayStation_4.png";
 
   return (
     <div className={styless.everyFather}>
@@ -88,6 +87,7 @@ export default function singleProduct({ product }) {
         <span>3 Comentarios</span>
         <hr style={style.hr} />
         <div style={style.userCommentBox}>
+
           <img
             style={style.avatarComment}
             src="https://avatarfiles.alphacoders.com/126/126912.png"
@@ -97,6 +97,7 @@ export default function singleProduct({ product }) {
             placeholder="Inserte comentario..."
             type="text"
           />
+
           <Button
             variant="contained"
             color="default"

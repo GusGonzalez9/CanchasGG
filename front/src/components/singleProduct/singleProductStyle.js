@@ -101,11 +101,14 @@ const style = {
     
   },
   userCommentBox:{
+
+
     display:'flex',
     flexDirection:'row',
     justifyContent:'center',
     alignItems:'center',
     alignContent:'center'
+
   },
   commentsBox:{
     display:'flex',

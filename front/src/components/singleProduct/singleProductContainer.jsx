@@ -1,4 +1,5 @@
 import React from "react";
+
 import { connect } from "react-redux";
 import SingleProduct from "./singleProduct";
 import {fetchProduct} from '../../action-creators/singleProduct'
@@ -42,6 +43,7 @@ class singleProductCotainer extends React.Component {
     );
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(singleProductCotainer);
 
 
