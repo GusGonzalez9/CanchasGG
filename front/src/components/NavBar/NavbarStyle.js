@@ -22,7 +22,11 @@
   },
   AppBar2:{
     backgroundColor:"#01277A"
+  },
+  link:{
+    textDecoration:'none'
   }
+
 }
 
 export default style

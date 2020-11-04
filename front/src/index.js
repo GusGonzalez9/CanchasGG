@@ -8,8 +8,10 @@ import "./styles/style.css";
 import Main from "./Main";
 import store from "./store";
 ReactDOM.render(
+  <Provider store={store}>
   <BrowserRouter>
     <Route path="/" component={Main} />
-  </BrowserRouter>,
+  </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
