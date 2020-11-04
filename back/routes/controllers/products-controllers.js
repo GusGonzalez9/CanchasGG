@@ -32,8 +32,18 @@ const addSingleProduct = (req, res, next) => {
     .catch(next)
 }
 
+const deleteSingleProduct = (req, res, next) => {
+    Product.findByPk(req.params.id)
+    .then(product => product.destroy())
+    .then(data => res.status(200).send(data))
+}
+
 const userValidation = (req, res, next) => {
     req.user ? next() : res.sendStatus(401)
 }
 
-module.exports = {getProducts, getSingleProduct, addSingleProduct, addComment, addRate, userValidation}
+const adminValidation = (req, res, next) => {
+    req.user.access != 'basic' ? next() : res.sendStatus(401)
+}
+
+module.exports = {getProducts, getSingleProduct, addSingleProduct, deleteSingleProduct, addComment, addRate, userValidation, adminValidation}

@@ -78,7 +78,7 @@ app.use((err, req, res, next) => {
 });
 
 //Server & data base setting
-db.sync({ force: false })
+db.sync({ force: true })
   .then(() =>
     app.listen(1905, () => {
       console.log("Server listening on port 1905");
