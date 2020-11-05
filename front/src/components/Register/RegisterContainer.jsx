@@ -5,8 +5,7 @@ import { registerUser } from "../../store/action-creators/users";
 const mapDispatchToProps = (dispatch, ownProps) => {
   // const history = ownProps.history;
   return {
-    registerUser: (data) => dispatch(registerUser(data)),
-    
+    registerUser: (data) => registerUser(data),
   };
 };
 class RegisterContainer extends React.Component {
