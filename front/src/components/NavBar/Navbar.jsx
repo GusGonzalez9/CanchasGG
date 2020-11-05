@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -171,25 +171,49 @@ export default function PrimarySearchAppBar() {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <Button variant="contained" color="default" style={style.button}>
-                <Link style={style.link} from="/" to="/login">
-                  Login
-                </Link>
-              </Button>
-              <Button variant="contained" color="default" style={style.button}>
-                <Link style={style.link} from="/" to="/register">
-                  Register
-                </Link>
-              </Button>
-                 <Button variant="contained" color="default" style={style.button}>
-        Log Out
-      </Button>
-            
-            <img style={style.buttonUser} edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen} src="https://bocashop.vteximg.com.br/arquivos/account.png" alt="" srcset=""/>
+              {props.userId ? (
+                <Button
+                  variant="contained"
+                  color="default"
+                  style={style.button}
+                  onClick={props.LogoutUser}
+                >
+                  Log Out
+                </Button>
+              ) : (
+                <div>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    style={style.button}
+                  >
+                    <Link style={style.link} from="/" to="/login">
+                      Login
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    style={style.button}
+                  >
+                    <Link style={style.link} from="/" to="/register">
+                      Register
+                    </Link>
+                  </Button>
+                </div>
+              )}
+
+              <img
+                style={style.buttonUser}
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                src="https://bocashop.vteximg.com.br/arquivos/account.png"
+                alt=""
+                srcset=""
+              />
               <IconButton
                 edge="end"
                 aria-label="account of current user"
