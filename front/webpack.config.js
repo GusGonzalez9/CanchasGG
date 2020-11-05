@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   mode: "development",
   entry: "./src/index.js",
@@ -28,9 +30,12 @@ module.exports = {
           },
           {
             loader: "css-loader",
-          },
-          {
-            loader: "postcss-loader",
+            options: {
+              modules: {
+                mode: "local",
+                localIdentName: "[path][name]__[local]--[hash:base64:5]",
+              },
+            },
           },
         ],
       },

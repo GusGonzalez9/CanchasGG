@@ -21,6 +21,7 @@
     "postcss-loader": "^4.0.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "react-material-ui-carousel": "^2.1.1",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "redux": "^3.7.2",
