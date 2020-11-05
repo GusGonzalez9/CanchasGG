@@ -1,5 +1,4 @@
-
-const Category = require("../../models/Category");
+const {Category, Product} = require("../../models/");
 
 const getCategories = (req, res, next) => {
     Category.findAll()
@@ -7,20 +6,20 @@ const getCategories = (req, res, next) => {
     .catch(next)
 }
 
-const addCategory = (req, res, next) => {
+const addSingleCategory = (req, res, next) => {
     Category.create(req.body)
     .then(data => res.status(201).send(data))
     .catch(next)
 }
 
-const updateCategory = (req, res, next) => {
+const updateSingleCategory = (req, res, next) => {
     Category.findByPk(req.params.id)
     .then(category => category.update(req.body))
     .then(data => res.status(200).send(data))
     .catch(next)
 }
 
-const deleteCategory = (req, res, next) => {
+const deleteSingleCategory = (req, res, next) => {
     Category.findByPk(req.params.id)
     .then(categorie => categorie.destroy())
     .then(categorie => res.status(200).send(categorie))
@@ -28,15 +27,15 @@ const deleteCategory = (req, res, next) => {
 }
 
 const getSingleCategory = (req, res, next) => {
-    Category.findByPk(req.params.id)
+    Category.findByPk(req.params.id, {include: Product})
     .then(data => res.send(data))
     .catch(next)
 }
 
 module.exports = {
     getCategories,
-    addCategory,
-    deleteCategory,
     getSingleCategory,
-    updateCategory
+    addSingleCategory,
+    updateSingleCategory,
+    deleteSingleCategory,
 }

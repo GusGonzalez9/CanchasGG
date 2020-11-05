@@ -36,9 +36,12 @@ const updateSingleProduct = (req, res, next) => {
     .catch(next)
 }
 const deleteSingleProduct = (req, res, next) => {
-    Product.findByPk(req.params.id)
-    .then(product => product.destroy())
-    .then(() => res.status(200).send(data))
+    Promise.all([
+        Comment.destroy({where: {productId: req.params.id}}),
+        Rate.destroy({where: {productId: req.params.id}}),
+        Product.findByPk(req.params.id).then(user => {user.destroy()})
+    ])
+    .then(() => res.sendStatus(200))
     .catch(next)
 }
 

@@ -7,7 +7,8 @@ Purchase.init(
         status: {
             type: S.ENUM({
                 values: ['completed', 'pending']
-            })
+            }),
+            defaultValue: 'pending',
         },
         total: {
             type: S.FLOAT,
@@ -17,10 +18,6 @@ Purchase.init(
             type: S.BOOLEAN,
             allowNull: false,
             defaultValue: true,
-        },
-        adress: {
-            type: S.TEXT,
-            allowNull: false
         },
     }, {sequelize: db, modelName: 'purchase'}
 )
