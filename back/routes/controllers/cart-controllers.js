@@ -69,9 +69,14 @@ const submitCart = (req, res, next) => {
 const addProduct = (req, res, next) => {
     const {cartId, productId, units} = req.body
     Purchase.findByPk(cartId)
-    .then(cart => cart.createOrder({productId, units})
-        .then(order => res.send(order)))
-    .catch(next)
+    .then(cart => cart.getOrders({where: {productId}})
+        .then(orders => {
+            orders[0]
+            ? orders[0].update({units}).then(order => res.status(200).send(order))
+            : cart.createOrder({productId, units}).then(order => res.status(201).send(order))
+        })
+        .catch(next)
+    )
 } 
 const updateProduct = (req, res, next) => {
     Order.findByPk = (req.params.id)
