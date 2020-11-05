@@ -1,10 +1,10 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { connect } from "react-redux";
-import { logoutUser } from "../../action-creators/usersCreators";
+import { logoutUser } from "../../store/action-creators/users";
 const mapStateToProps = (state) => {
   return {
-    userId: state.user.user.id,
+    userId: state.users.me.id,
   };
 };
 const mapDistpachToProps = (dispatch) => {

@@ -8,18 +8,18 @@ import FooterContainer from "./components/footer/FooterContainer";
 import RegisterContainer from "./components/Register/RegisterContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import singleProductContainer from "./components/singleProduct/singleProductContainer";
-import {permanenceUser} from './action-creators/usersCreators'
+import {hiUser} from './store/action-creators/users'
 import HomeContainer from './components/Home/HomeContainer'
 const mapDispatchToProps = (dispatch)=>{
   return {
-    permanence : ()=> dispatch(permanenceUser())
+    HiUser : ()=> dispatch(hiUser())
   }
 }
 
 
 class Main extends React.Component {
    componentDidMount(){
-    this.props.permanence()
+    this.props.HiUser()
   }  
   render() {
     return (
@@ -27,8 +27,8 @@ class Main extends React.Component {
         <NavbarContainer />
         <Switch>        
          
-          <Route path="/" component={HomeContainer} />
-          <Route path="/products/:id" component={singleProductContainer} />
+          <Route exact path="/" component={HomeContainer} />
+          <Route exact path="/products/:id" component={singleProductContainer} />
         </Switch>
 
         <PreContainer />
