@@ -3,66 +3,96 @@ const {Order, Purchase, Product, User} = require('../../models')
 const getCarts = (req, res, next) => {
     Purchase.findAll({
         where: {
-            userId : req.user.id,
-            status: 'complete'
-        },
-        include: Order,
+            userId : 1, //req.user.id,
+            status: 'pending' //'completed'
+        }
     })    
     .then(data => {res.send(data)})
     .catch(next)
 }
 
+// CART'S ROUTES
+// Find or create currectCart for logged user
 const hasCurrentCart = (req, res, next) => {
     Purchase.findOne({
         where: {
-            userId: req.user.id,
+            userId: 2, // req.user.id,
             status: 'pending'
         }
     })
     .then(currentPurchase => {
         currentPurchase 
-        ? (req.cart = currentPurchase, next())
-        // : req.user
+        ? (req.body.cart = currentPurchase, next())
+        // : req.user.createPurchase()
         : User.findByPk(2)
             .then(user => user.createPurchase())
             .then(purchase => {
-                req.cart = purchase;
+                req.body.cart = purchase;
                 next()
             })
     })
 }
-
-const addProduct = (req, res, next) => {
-    const {productId, units} = req.body
-    req.cart.getOrders({where: {productId}})
-    .then(order => {
-        order[0] 
-        ? order[0].update({units}).then(data => res.send(data))
-        : req.cart.createOrder({productId, units}).then(data => res.send(data))
-    })
-}
-
-const getCurrentCart = (req, res, next) => {
-    Purchase.findOne({
-        where: {
-            userId: 1, //req.user.id
-            status: 'pending'
-        }
-    })
-    .then(currentPurchase => {
-        currentPurchase
-        ? currentPurchase.getOrders({include: Product})
-        .then(orders => {
-            res.send({currentPurchase, orders})
-        })
+// Find single cart by id
+const hasSingleCart = (req, res, next) => {
+    Purchase.findByPk(req.params.id)
+    .then(purchase => {
+        purchase 
+        ? (req.body.cart = purchase, next())
         : res.sendStatus(404)
     })
+}
+// Serve cart
+const getSingleCart = (req, res, next) => {
+    req.body.cart.getOrders({include: Product})
+    .then(orders => res.send({purchase: req.body.cart, orders}))
+    .catch(next)
+}
+// Submint cart
+const submitCart = (req, res, next) => {
+    Promise.all(
+        req.body.prices.map(o => 
+            Order.update({subtotal: o.subtotal}, {where: {id: o.id}})
+        )
+    )
+    .then(() => {
+        Purchase.findByPk(req.params.id)
+        .then(purchase => purchase.update({
+            total: req.body.total, 
+            status: 'completed'
+        }))
+        .then(data => res.send(data))
+    })
+    .catch(next)
+}
+
+// ORDERS' ROUTES
+const addProduct = (req, res, next) => {
+    const {cartId, productId, units} = req.body
+    Purchase.findByPk(cartId)
+    .then(cart => cart.createOrder({productId, units})
+        .then(order => res.send(order)))
+    .catch(next)
+} 
+const updateProduct = (req, res, next) => {
+    Order.findByPk = (req.params.id)
+    .then(order => order.update(req.body))
+    .then((data) => res.send(data))
+    .catch(next)
+}
+const deleteProduct = (req, res, next) => {
+    Order.findByPk(req.params.id)
+    .then(order => order.destroy())
+    .then(() => res.sendStatus(200))
     .catch(next)
 }
 
 module.exports = {
     getCarts,
-    getCurrentCart,
+    getSingleCart,
     hasCurrentCart,
+    hasSingleCart,
     addProduct,
+    updateProduct,
+    deleteProduct,
+    submitCart,
 }

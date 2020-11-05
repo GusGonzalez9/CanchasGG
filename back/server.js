@@ -8,7 +8,7 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-// const { User } = require('./models')
+const { User } = require('./models')
 
 //Logging middleware
 const morgan = require("morgan");
