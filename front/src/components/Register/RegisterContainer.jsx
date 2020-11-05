@@ -1,7 +1,7 @@
 import Register from "./Register";
 import React from "react";
 import { connect } from "react-redux";
-import { registerUser } from "../../action-creators/usersCreators";
+import { registerUser } from "../../store/action-creators/users";
 const mapDispatchToProps = (dispatch, ownProps) => {
   const history = ownProps.history;
   return {
