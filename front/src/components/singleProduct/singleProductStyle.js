@@ -7,17 +7,20 @@ const style = {
     marginTop: 20,
     fontFamily: "Roboto",
   },
+
   fatherAllSingleProduct: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 10,
   },
+
   FatherLittleImg: {
     display: "flex",
     flexDirection: "column",
     maxHeight: 400,
   },
+  
   littleImg: {
     maxWidth: 100,
     marginBottom: 50,
