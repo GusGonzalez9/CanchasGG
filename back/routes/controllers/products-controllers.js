@@ -1,9 +1,25 @@
+const { Op } = require("sequelize");
 const { Product, Comment, Rate, Image } = require("../../models");
 
-const getProducts = (req, res) => {
-    Product.findAll({include: Image}).then((productos) => {
+const getProducts = (req, res, next) => {
+    Product.findAll({where: req.query, include: Image})
+    .then((productos) => {
       res.send(productos);
-    });
+    })
+    .catch(next)
+}
+const getOffProducts = (req, res, next) => {
+    Product.findAll({
+        where: {
+            off: {
+                [Op.gt]: 0
+            }
+        }
+    },{include: Image})
+    .then((productos) => {
+      res.send(productos);
+    })
+    .catch(next)
 }
 
 // SINGLE PRODUCT'S ROUTES
@@ -92,6 +108,7 @@ const adminValidation = (req, res, next) => {
 
 module.exports = {
     getProducts,
+    getOffProducts,
     getSingleProduct,
     addSingleProduct,
     updateSingleProduct,

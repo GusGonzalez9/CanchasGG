@@ -1,7 +1,7 @@
 const {User, Comment, Rate} = require("../../models");
 
 const getUsers = (req, res, next) => {
-  User.findAll()
+  User.findAll({where: req.query})
     .then((data) => res.send(data))
     .catch(next);
 };

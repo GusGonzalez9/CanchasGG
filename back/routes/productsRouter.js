@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
     getProducts,
+    getOffProducts,
     getSingleProduct,
     addSingleProduct,
     updateSingleProduct,
@@ -15,6 +16,7 @@ const {
     adminValidation
 } = require('./controllers/products-controllers')
 
+router.get("/off", getOffProducts);
 router.post("/:id/images", /*userValidation,*/ addImage);
 router.post("/:id/comments", /*userValidation,*/ addComment);
 router.delete("/:id/comments", /*userValidation,*/ deleteComment);
