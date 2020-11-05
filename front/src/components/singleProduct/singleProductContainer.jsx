@@ -2,19 +2,19 @@ import React from "react";
 
 import { connect } from "react-redux";
 import SingleProduct from "./singleProduct";
-import { fetchProduct } from "../../action-creators/singleProduct";
+import { fetchSelectedProduct } from "../../store/action-creators/products";
 
-const mapStateToProps = (state,ownProps) => {
-  console.log(ownProps)
-  const id = ownProps.match.params.id
+const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
+  const id = ownProps.match.params.id;
   return {
     product: state.product,
-    id
+    id,
   };
 };
 const mapDispatchToProps = function (dispatch) {
   return {
-    fetchProduct: (id) => dispatch(fetchProduct(id)),
+    fetchProduct: (id) => dispatch(fetchSelectedProduct(id)),
   };
 };
 

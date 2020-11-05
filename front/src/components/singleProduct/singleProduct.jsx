@@ -3,8 +3,8 @@ import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
-import style from "./singleProductStyle";
-import styless from "./SingleProductStyles.css";
+/* import style from "./singleProductStyle";
+ */ import styless from "./SingleProductStyle.css";
 
 export default function singleProduct({ product }) {
   console.log(product);

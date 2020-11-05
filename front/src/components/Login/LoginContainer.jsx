@@ -1,7 +1,7 @@
 import Login from "./Login";
 import React from "react";
 import { connect } from "react-redux";
-import { loginUser } from "../../action-creators/usersCreators";
+import { loginUser } from "../../store/action-creators/users";
 const mapDispatchToProps = (dispatch, ownProps) => {
   const history = ownProps.history;
   return {
