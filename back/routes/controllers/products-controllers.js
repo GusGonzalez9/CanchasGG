@@ -1,14 +1,14 @@
-const { Product, Comment, Rate, Category } = require("../../models");
+const { Product, Comment, Rate, Image } = require("../../models");
 
 const getProducts = (req, res) => {
-    Product.findAll().then((productos) => {
+    Product.findAll({include: Image}).then((productos) => {
       res.send(productos);
     });
 }
 
 // SINGLE PRODUCT'S ROUTES
 const getSingleProduct = (req, res, next) => {
-    Product.findByPk(req.params.id, { include: [Comment, Rate, Category] })
+    Product.findByPk(req.params.id, { include: [Comment, Rate, Image] })
     .then(data => res.send(data))
     .catch(next)
 }
@@ -42,6 +42,15 @@ const deleteSingleProduct = (req, res, next) => {
         Product.findByPk(req.params.id).then(user => {user.destroy()})
     ])
     .then(() => res.sendStatus(200))
+    .catch(next)
+}
+
+// PRODUCT'S IMAGES
+const addImage = (req, res, next) => {
+    Product.findByPk(req.params.id)
+    .then(product => product.createImage({url: req.body.url})
+        .then(image => res.send(image))
+    )
     .catch(next)
 }
 
@@ -87,6 +96,7 @@ module.exports = {
     addSingleProduct,
     updateSingleProduct,
     deleteSingleProduct,
+    addImage,
     addComment,
     deleteComment,
     addRate,

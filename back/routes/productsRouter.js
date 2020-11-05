@@ -6,6 +6,7 @@ const {
     addSingleProduct,
     updateSingleProduct,
     deleteSingleProduct,
+    addImage,
     addComment,
     deleteComment,
     addRate,
@@ -14,7 +15,7 @@ const {
     adminValidation
 } = require('./controllers/products-controllers')
 
-
+router.post("/:id/images", /*userValidation,*/ addImage);
 router.post("/:id/comments", /*userValidation,*/ addComment);
 router.delete("/:id/comments", /*userValidation,*/ deleteComment);
 router.post("/:id/rates", /*userValidation,*/ addRate);

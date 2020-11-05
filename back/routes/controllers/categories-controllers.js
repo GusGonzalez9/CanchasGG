@@ -1,4 +1,4 @@
-const {Category, Product} = require("../../models/");
+const {Category, Image, Product, Comment} = require("../../models/");
 
 const getCategories = (req, res, next) => {
     Category.findAll()
@@ -27,8 +27,12 @@ const deleteSingleCategory = (req, res, next) => {
 }
 
 const getSingleCategory = (req, res, next) => {
-    Category.findByPk(req.params.id, {include: Product})
-    .then(data => res.send(data))
+    Category.findByPk(req.params.id)
+    .then(category => category.getProducts({include: [Image]})
+        .then(products =>
+            res.send({category, products})
+        )
+    )
     .catch(next)
 }
 
