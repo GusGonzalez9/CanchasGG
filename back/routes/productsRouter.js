@@ -26,6 +26,4 @@ router.get("/:id", getSingleProduct);
 router.post("/", /*adminValidation,*/ addSingleProduct);
 router.get("/", getProducts);
 
-
-
 module.exports = router;
