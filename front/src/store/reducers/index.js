@@ -1,11 +1,10 @@
-import  { createStore, applyMiddleware } from 'redux'
-import logger from 'redux-logger'
-import thunk from 'redux-thunk'
+import { combineReducers } from 'redux'
+// import cartsReducer from './favoritesReducer'
+import productsReducer from './productsReducer'
+import usersReducer from './usersReducer'
 
-// Combined reducer
-import combinedReducer from './reducers'
-
-export default createStore(
-    combinedReducer,
-    applyMiddleware(logger, thunk)
-)
+export default combineReducers({
+    products: productsReducer,
+    users: usersReducer,
+    // carts: cartsReducer,
+})
