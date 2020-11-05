@@ -3,14 +3,11 @@ import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
-
 import style from "./singleProductStyle";
-
 import styless from "./SingleProductStyles.css";
 
-
 export default function singleProduct({ product }) {
-
+  console.log(product);
   return (
     <div className={styless.everyFather}>
       <Breadcrumbs aria-label="breadcrumb">
@@ -87,7 +84,6 @@ export default function singleProduct({ product }) {
         <span>3 Comentarios</span>
         <hr style={style.hr} />
         <div style={style.userCommentBox}>
-
           <img
             style={style.avatarComment}
             src="https://avatarfiles.alphacoders.com/126/126912.png"
@@ -110,27 +106,25 @@ export default function singleProduct({ product }) {
       <hr style={style.hr} />
       <div>
         <div style={style.commentsBox}>
-        <img
-          style={style.avatarComment}
-          src="https://avatarfiles.alphacoders.com/126/126912.png"
-        />
-        <span style={style.commentBoxUser}>UserName :</span>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Exercitationem quam molestiae totam voluptates, expedita doloremque.
-        </p>
-        
+          <img
+            style={style.avatarComment}
+            src="https://avatarfiles.alphacoders.com/126/126912.png"
+          />
+          <span style={style.commentBoxUser}>UserName :</span>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Exercitationem quam molestiae totam voluptates, expedita doloremque.
+          </p>
+        </div>
+        <Button
+          variant="contained"
+          color="default"
+          style={style.buttonColorDelete}
+        >
+          Eliminar Comentario
+        </Button>
+        <hr style={style.hr} />
       </div>
-      <Button
-              variant="contained"
-              color="default"
-              style={style.buttonColorDelete}
-            >
-              Eliminar Comentario
-            </Button>
-      <hr style={style.hr} />
-      </div>
-      
     </div>
   );
 }
