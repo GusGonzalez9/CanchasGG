@@ -1,25 +1,36 @@
-// import {SET_MY_CART, SET_CARTS, SET_SE} from '../constants'
+import {SET_MY_CART, SET_CARTS, SELECT_CART, ADD_ORDER, REMOVE_ORDER} from '../constants'
 
-// const initialFavoritesState = {
-//     myCart: {},
-//     list: [],
-//     selectedCart: {}
-// }
+const initialState = {
+    myCart: {},
+    list: [],
+    selectedCart: {}
+}
 
-// export default (state = initialFavoritesState, action) => {
-//     const newState = {... state}
-//     switch(action.type){
-//         case SET_FAVORITES:
-//             newState.list = action.list
-//         break
-//         case ADD_FAVORITE:
-//             newState.list = [...newState.list, action.favorite]
-//         break
-//         case REMOVE_FAVORITE:
-//             newState.list = newState.list.filter(favorite => favorite.imdbID != action.id)
-//         break
-//         default:
-//             return state
-//     }
-//     return newState
-// } 
+export default (state = initialState, action) => {
+    const newState = {... state}
+    switch(action.type){
+        case SET_MY_CART:
+            newState.myCart = action.myCart
+        break
+        case ADD_ORDER:
+            newState.myCart.orders = [
+                ... newState.myCart.orders.filter(o => 
+                    o.id != action.order.id),
+                action.order]
+        break
+        case REMOVE_ORDER:
+            newState.myCart.orders = [
+                ... newState.myCart.orders.filter(o => 
+                    o.id != action.id)]
+        break
+        case SET_CARTS:
+            newState.list = action.list
+        break
+        case SELECT_CART:
+            newState.selectedCart = action.selectedCart
+        break
+        default:
+            return state
+    }
+    return newState
+} 
