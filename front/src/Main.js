@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect, component } from "react-router-dom";
+import {connect} from 'react-redux'
 import style from "./styles/style.css";
 import NavbarContainer from "./components/NavBar/NavbarContainer";
 import PreContainer from "./components/prefooter/PreContainer";
@@ -9,8 +10,18 @@ import CardsContainer from "./components/Cards/CardsContainer";
 import RegisterContainer from "./components/Register/RegisterContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import singleProductContainer from "./components/singleProduct/singleProductContainer";
+import {permanenceUser} from './action-creators/usersCreators'
+const mapDispatchToProps = (dispatch)=>{
+  return {
+    permanence : ()=> dispatch(permanenceUser())
+  }
+}
+
 
 class Main extends React.Component {
+   componentDidMount(){
+    this.props.permanence()
+  }  
   render() {
     return (
       <div>
@@ -49,4 +60,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default connect(null,mapDispatchToProps)(Main);
