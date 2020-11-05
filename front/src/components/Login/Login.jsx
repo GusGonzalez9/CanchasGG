@@ -1,16 +1,17 @@
 import React from "react";
-import "./LoginStyle.css";
+import style from "./LoginStyle.css";
+
 const Login = (props) => {
   return (
     <div>
-      <div className="register"></div>
-      <div className="grad"></div>
-      <div className="header">
-        <div className="logo">
+      <div className={style.register}></div>
+      <div className={style.grad}></div>
+      <div className={style.header}>
+        <div className={style.logo}>
           Site<span>1 9 0 5</span>
         </div>
       </div>
-      <div className="login">
+      <div className={style.login}>
         <input
           type="text"
           placeholder="email"
