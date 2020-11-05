@@ -3,13 +3,13 @@ import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
-/* import style from "./singleProductStyle";
- */ import styless from "./SingleProductStyle.css";
+import style from "./singleProductStyle.js";
+
 
 export default function singleProduct({ product }) {
   console.log(product);
   return (
-    <div className={styless.everyFather}>
+    <div style={style.everyFather}>
       <Breadcrumbs aria-label="breadcrumb">
         <Link color="inherit">Home</Link>
         <Link color="inherit">Productos</Link>
@@ -43,7 +43,7 @@ export default function singleProduct({ product }) {
 
         <div style={style.descriptionFather}>
           {/* DESCRIPCION DEL PRODUCTO */}
-          <h1 className={styless.hola}>{product.name}</h1>
+          <h1 className={style.hola}>{product.name}</h1>
           <h1 style={style.price}>{product.price}</h1>
 
           {product.off ? (

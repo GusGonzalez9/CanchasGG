@@ -4,17 +4,17 @@ import { connect } from "react-redux";
 import SingleProduct from "./singleProduct";
 import { fetchSelectedProduct } from "../../store/action-creators/products";
 
-const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
-  const id = ownProps.match.params.id;
+const mapStateToProps = (state,ownProps) => {
+  console.log(ownProps)
+  const id = ownProps.match.params.id
   return {
-    product: state.product,
-    id,
+    product: state.products.selectedProduct,
+    id
   };
 };
 const mapDispatchToProps = function (dispatch) {
   return {
-    fetchProduct: (id) => dispatch(fetchSelectedProduct(id)),
+    fetchSelectedProduct: (id) => dispatch(fetchSelectedProduct(id)),
   };
 };
 
@@ -27,13 +27,13 @@ class singleProductCotainer extends React.Component {
   handleImgChange() {}
 
   componentDidMount() {
-    this.props.fetchProduct(this.props.id);
+    this.props.fetchSelectedProduct(this.props.id);
   }
 
   render() {
     return (
       <div>
-        <SingleProduct product={this.props.product.product} />
+        <SingleProduct product={this.props.product} />
       </div>
     );
   }
