@@ -5,7 +5,6 @@ import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
 import style from "./singleProductStyle.js";
 
-
 export default function singleProduct({ product }) {
   console.log(product);
   return (
