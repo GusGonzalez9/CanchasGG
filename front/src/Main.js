@@ -26,11 +26,9 @@ class Main extends React.Component {
       <div>
         <NavbarContainer />
         <Switch>        
-         
           <Route exact path="/" component={HomeContainer} />
           <Route exact path="/products/:id" component={singleProductContainer} />
         </Switch>
-
         <PreContainer />
         <FooterContainer />
         <Switch>
