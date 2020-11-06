@@ -31,12 +31,11 @@ class Main extends React.Component {
     return (
       <>
         <NavbarContainer/>
-        <Switch>        
+        <Switch>  
           <Route exact path="/" component={HomeContainer}/>
           <Route exact path="/products/:id" component={singleProductContainer}/>
           <Route path="/carts/mycart" component={MyCartContainer}/>
         </Switch>
-
         <PreContainer />
         <FooterContainer />
         <Switch>

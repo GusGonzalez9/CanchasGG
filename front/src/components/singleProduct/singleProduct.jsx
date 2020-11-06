@@ -3,43 +3,50 @@ import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
+
 import style from "./singleProductStyle.js";
 
-export default function singleProduct({ product }) {
-  console.log(product);
+export default function singleProduct({
+  product,
+  commentChange,
+  handleSubmitComment,
+  handleImgChange,
+  imagenPrincipal,
+  contador,
+}) {
   return (
     <div style={style.everyFather}>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit">Home</Link>
-        <Link color="inherit">Productos</Link>
+        <Link href="/" color="inherit">
+          Home
+        </Link>
+        <Link href="/" color="inherit">
+          Productos
+        </Link>
         <Typography color="textPrimary">{product.name}</Typography>
       </Breadcrumbs>
-
       <div style={style.fatherAllSingleProduct}>
         <div style={style.FatherLittleImg}>
-          {/* ACA VA UN MAP PARA TODAS LAS FOTOS DEL PRODUCTO YO RENDERIZO 3 PARA QUE VEAN COMO SE TENDRIAN QUE VER */}
-          <img
-            style={style.littleImg}
-            src="https://gamedustria.com/wp-content/uploads/2015/06/PlayStation_4.png"
-          />
-          <img
-            style={style.littleImg}
-            src="https://miro.medium.com/max/3000/1*pMDS1A_zmkE18aE4y2u36Q.png"
-          />
-          <img
-            style={style.littleImg}
-            src="https://i1.wp.com/regionps.com/wp-content/uploads/2018/04/image-a.png?resize=700%2C478"
-          />
+          {product.images &&
+            product.images.map((img) => {
+              return (
+                <img
+                  value={`${img.url}`}
+                  style={style.littleImg}
+                  src={`${img.url}`}
+                  onClick={handleImgChange}
+                />
+              );
+            })}
         </div>
-
         <div>
           {/* IMAGEN PRINCIPAL */}
-          <img
-            style={style.imgPrincipal}
-            src="https://gamedustria.com/wp-content/uploads/2015/06/PlayStation_4.png"
-          />
+          {product.images && product.images[0] && !contador ? (
+            <img style={style.imgPrincipal} src={product.images[0].url} />
+          ) : (
+            <img style={style.imgPrincipal} src={imagenPrincipal} />
+          )}
         </div>
-
         <div style={style.descriptionFather}>
           {/* DESCRIPCION DEL PRODUCTO */}
           <h1 className={style.hola}>{product.name}</h1>
@@ -91,39 +98,52 @@ export default function singleProduct({ product }) {
             style={style.inputComment}
             placeholder="Inserte comentario..."
             type="text"
+            onChange={commentChange}
           />
 
           <Button
             variant="contained"
             color="default"
             style={style.commentUserButton}
+            onClick={handleSubmitComment}
           >
             Enviar
           </Button>
         </div>
       </div>
       <hr style={style.hr} />
-      <div>
-        <div style={style.commentsBox}>
-          <img
-            style={style.avatarComment}
-            src="https://avatarfiles.alphacoders.com/126/126912.png"
-          />
-          <span style={style.commentBoxUser}>UserName :</span>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Exercitationem quam molestiae totam voluptates, expedita doloremque.
-          </p>
-        </div>
-        <Button
-          variant="contained"
-          color="default"
-          style={style.buttonColorDelete}
-        >
-          Eliminar Comentario
-        </Button>
-        <hr style={style.hr} />
-      </div>
+      {console.log(
+        "HOLAAAAAA ESTO SON LOS COMENTARIOS",
+        product.comments
+      )}
+      {product.comments &&
+        product.comments.map((comment) => {
+          
+          return (
+
+            <div>
+              <div style={style.commentsBox}>
+                <img
+                  style={style.avatarComment}
+                  src="https://avatarfiles.alphacoders.com/126/126912.png"
+                />
+                <span style={style.commentBoxUser}>UserName :</span>
+
+                <p>{comment.content}</p>
+              </div>
+              <Button
+                variant="contained"
+                color="default"
+                style={style.buttonColorDelete}
+              >
+                Eliminar Comentario
+              </Button>
+              <hr style={style.hr} />
+            </div>
+
+
+          );
+        })}
     </div>
   );
 }
