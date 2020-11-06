@@ -7,6 +7,7 @@ import { fetchSelectedProduct } from "../../store/action-creators/products";
 const mapStateToProps = (state, ownProps) => {
   console.log(ownProps);
   const id = ownProps.match.params.id;
+
   return {
     product: state.products.selectedProduct,
     id,

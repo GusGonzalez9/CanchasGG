@@ -3,10 +3,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { registerUser } from "../../store/action-creators/users";
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const history = ownProps.history;
+  // const history = ownProps.history;
   return {
-    RegisterUser: (data) => dispatch(registerUser(data)),
-    history,
+    registerUser: (data) => registerUser(data),
   };
 };
 class RegisterContainer extends React.Component {
@@ -28,7 +27,7 @@ class RegisterContainer extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props
-      .RegisterUser(this.state)
+      .registerUser(this.state)
       .then(() => this.props.history.push("/"));
   }
   render() {

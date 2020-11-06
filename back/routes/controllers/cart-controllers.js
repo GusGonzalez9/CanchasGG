@@ -3,8 +3,8 @@ const {Order, Purchase, Product, User} = require('../../models')
 const getCarts = (req, res, next) => {
     Purchase.findAll({
         where: {
-            userId : 1, //req.user.id,
-            status: 'pending' //'completed'
+            userId : req.user.id,
+            status: 'completed'
         }
     })    
     .then(data => {res.send(data)})
@@ -16,16 +16,14 @@ const getCarts = (req, res, next) => {
 const hasCurrentCart = (req, res, next) => {
     Purchase.findOne({
         where: {
-            userId: 2, // req.user.id,
+            userId: req.user.id,
             status: 'pending'
         }
     })
     .then(currentPurchase => {
         currentPurchase 
         ? (req.body.cart = currentPurchase, next())
-        // : req.user.createPurchase()
-        : User.findByPk(2)
-            .then(user => user.createPurchase())
+        : req.user.createPurchase()
             .then(purchase => {
                 req.body.cart = purchase;
                 next()
