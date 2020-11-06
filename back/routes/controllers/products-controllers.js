@@ -15,7 +15,7 @@ const getOffProducts = (req, res, next) => {
                 [Op.gt]: 0
             }
         }
-    },{include: Image})
+    ,include: Image})
     .then((productos) => {
       res.send(productos);
     })

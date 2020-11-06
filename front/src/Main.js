@@ -8,27 +8,33 @@ import FooterContainer from "./components/footer/FooterContainer";
 import RegisterContainer from "./components/Register/RegisterContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import singleProductContainer from "./components/singleProduct/singleProductContainer";
-import {hiUser} from './store/action-creators/users'
 import HomeContainer from './components/Home/HomeContainer'
-const mapDispatchToProps = (dispatch)=>{
-  return {
-    HiUser : ()=> dispatch(hiUser())
-  }
-}
+import MyCartContainer from './components/MyCart/MyCartContainer'
 
+import {hiUser} from './store/action-creators/users'
+import {fetchMyCart} from './store/action-creators/carts'
+
+const mapDispatchToProps = dispatch => ({
+    hiUser: ()=> dispatch(hiUser()),
+    fetchMyCart: ()=> dispatch(fetchMyCart()),
+})
 
 class Main extends React.Component {
-   componentDidMount(){
-    this.props.HiUser()
+  
+  componentDidMount(){
+    this.props.hiUser().then(() => console.log('ACA VA EL DE LA LINEA DE ABAJO, PERRITO'))
+    this.props.fetchMyCart()
+    //ACA HAY QUE ARREGLAR
   }  
+
   render() {
     return (
-      <div>
-        <NavbarContainer />
+      <>
+        <NavbarContainer/>
         <Switch>        
-         
-          <Route exact path="/" component={HomeContainer} />
-          <Route exact path="/products/:id" component={singleProductContainer} />
+          <Route exact path="/" component={HomeContainer}/>
+          <Route exact path="/products/:id" component={singleProductContainer}/>
+          <Route path="/carts/mycart" component={MyCartContainer}/>
         </Switch>
 
         <PreContainer />
@@ -37,7 +43,7 @@ class Main extends React.Component {
           <Route exact path="/login" component={LoginContainer} />
           <Route exact path="/register" component={RegisterContainer} />
         </Switch>
-      </div>
+      </>
     );
   }
 }

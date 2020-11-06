@@ -15,9 +15,6 @@ Product.init(
     price: {
       type: S.FLOAT,
       allowNull: false,
-      get() {
-        return `$${this.getDataValue("price")}`;
-      },
     },
     stock: {
       type: S.INTEGER,

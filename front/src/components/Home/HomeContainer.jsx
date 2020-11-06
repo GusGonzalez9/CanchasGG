@@ -18,11 +18,7 @@ const mapDispatchToProps = function (dispatch) {
 };
 
 class HomeContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
+  
   componentDidMount() {
     console.log(this.props);
     this.props.fetchProducts("productsList").then(() => {

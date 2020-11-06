@@ -23,17 +23,13 @@ const isInCart = (cart, productId) => {
 }
 */
 
-/*  
-PARA SUBMITEAR EL CARRITO
-const [prices, total] = getValues(this.props.cart.orders)
 
-const getValues (orders) => {
+export const getValues = (orders) => {
   let total = 0
-  const prices = orders.map( o=> {
+  const prices = orders.map(o => {
     const subtotal = o.units * o.product.price
     total += subtotal 
     return { id: o.id, subtotal }
   })
-  return [prices, total]
-}   
-*/
+  return {prices, total}
+}  

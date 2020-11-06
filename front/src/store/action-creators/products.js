@@ -7,24 +7,21 @@ const setList = (list, products) => ({
   list, // 'productsList' || 'offList'
   products,
 });
+export const fetchProducts = (list) => (dispatch) => {
+  return list === "productsList"
+    ? axios
+        .get("/api/products")
+        .then((res) => dispatch(setList("productsList", res.data)))
+    : axios
+        .get("/api/products/off")
+        .then((res) => dispatch(setList('offList', res.data)));
+};
 
 // SELECT_PRODUCT
 const setSelectedProduct = (selectedProduct) => ({
   type: SELECT_PRODUCT,
   selectedProduct,
 });
-
-export const fetchProducts = (list) => (dispatch) => {
-  return list === "productsList"
-    ? axios
-        .get("/api/products")
-        .then((res) => dispatch(setList(list, res.data)))
-    : axios
-        .get("/api/products/off")
-        .then((res) => dispatch(setList(list, res.data)));
-};
-
-//SELECT PRODUCT
 export const fetchSelectedProduct = (id) => (dispatch) => {
   console.log("selected prod");
   axios

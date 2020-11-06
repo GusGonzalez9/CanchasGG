@@ -3,7 +3,7 @@ const {Order, Purchase, Product, User} = require('../../models')
 const getCarts = (req, res, next) => {
     Purchase.findAll({
         where: {
-            userId : req.user.id,
+            userId : 1,//req.user.id,
             status: 'completed'
         }
     })    
@@ -16,15 +16,16 @@ const getCarts = (req, res, next) => {
 const hasCurrentCart = (req, res, next) => {
     Purchase.findOne({
         where: {
-            userId: req.user.id,
+            userId: 1, //req.user.id,
             status: 'pending'
         }
     })
     .then(currentPurchase => {
         currentPurchase 
         ? (req.body.cart = currentPurchase, next())
-        : req.user.createPurchase()
-            .then(purchase => {
+        // : req.user.createPurchase()
+        : User.findByPk(1).then(user => user.createPurchase())
+        .then(purchase => {
                 req.body.cart = purchase;
                 next()
             })
@@ -45,6 +46,7 @@ const getSingleCart = (req, res, next) => {
     .then(orders => res.send({purchase: req.body.cart, orders}))
     .catch(next)
 }
+
 // Submint cart
 const submitCart = (req, res, next) => {
     Promise.all(
@@ -67,7 +69,7 @@ const submitCart = (req, res, next) => {
 const addProduct = (req, res, next) => {
     const {cartId, productId, units} = req.body
     Purchase.findByPk(cartId)
-    .then(cart => cart.getOrders({where: {productId}})
+    .then(cart => cart.getOrders({where: {productId}, include:Product})
         .then(orders => {
             orders[0]
             ? orders[0].update({units}).then(order => res.status(200).send(order))
