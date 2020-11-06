@@ -31,8 +31,9 @@ class singleProductCotainer extends React.Component {
     this.commentChange = this.commentChange.bind(this);
     this.handleSubmitComment = this.handleSubmitComment.bind(this);
     this.handleImgChange = this.handleImgChange.bind(this);
+    
   }
-
+ 
   handleImgChange(e) {
     this.setState({
       imagenPrincipal: e.currentTarget.src,
@@ -46,7 +47,7 @@ class singleProductCotainer extends React.Component {
   handleSubmitComment(e) {
     e.preventDefault();
     axios
-      .post("/api/products/" + this.props.id + "/comments", {
+      .post("/api/products/" + this.props.id + "/comments", {        
         content: this.state.comentario,
       })
       .then((data) => console.log("COMENTARIO PUBLICADO", data));
