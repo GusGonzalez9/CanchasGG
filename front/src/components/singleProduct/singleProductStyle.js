@@ -81,7 +81,8 @@ const style = {
       display:'flex',
       flexDirection:'column',
       justifyContent:'center',
-      alignItems:'center'  
+      alignItems:'center',
+      minWidth:800
   },
   hr:{
       width:'50%'

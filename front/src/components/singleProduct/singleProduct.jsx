@@ -17,8 +17,12 @@ export default function singleProduct({
   return (
     <div style={style.everyFather}>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit">Home</Link>
-        <Link color="inherit">Productos</Link>
+        <Link href="/" color="inherit">
+          Home
+        </Link>
+        <Link href="/" color="inherit">
+          Productos
+        </Link>
         <Typography color="textPrimary">{product.name}</Typography>
       </Breadcrumbs>
       <div style={style.fatherAllSingleProduct}>
@@ -108,27 +112,38 @@ export default function singleProduct({
         </div>
       </div>
       <hr style={style.hr} />
-      <div>
-        <div style={style.commentsBox}>
-          <img
-            style={style.avatarComment}
-            src="https://avatarfiles.alphacoders.com/126/126912.png"
-          />
-          <span style={style.commentBoxUser}>UserName :</span>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Exercitationem quam molestiae totam voluptates, expedita doloremque.
-          </p>
-        </div>
-        <Button
-          variant="contained"
-          color="default"
-          style={style.buttonColorDelete}
-        >
-          Eliminar Comentario
-        </Button>
-        <hr style={style.hr} />
-      </div>
+      {console.log(
+        "HOLAAAAAA ESTO SON LOS COMENTARIOS",
+        product.comments
+      )}
+      {product.comments &&
+        product.comments.map((comment) => {
+          
+          return (
+
+            <div>
+              <div style={style.commentsBox}>
+                <img
+                  style={style.avatarComment}
+                  src="https://avatarfiles.alphacoders.com/126/126912.png"
+                />
+                <span style={style.commentBoxUser}>UserName :</span>
+
+                <p>{comment.content}</p>
+              </div>
+              <Button
+                variant="contained"
+                color="default"
+                style={style.buttonColorDelete}
+              >
+                Eliminar Comentario
+              </Button>
+              <hr style={style.hr} />
+            </div>
+
+
+          );
+        })}
     </div>
   );
 }
