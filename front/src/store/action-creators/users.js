@@ -44,9 +44,5 @@ export const fetchUser = (id) => dispatch => {
 }
 
 /* non dispatching axios requests */
-export const registerUser = (user) => dispatch => {
-    
-  return axios.post("/api/users", user)
+export const registerUser = (user) => axios.post("/api/users", user)
   
-    
-}
