@@ -27,6 +27,7 @@ class singleProductCotainer extends React.Component {
       imagenPrincipal: "",
       contador: 0,
       carrito: "",
+      contador2: 0
     };
     this.commentChange = this.commentChange.bind(this);
     this.handleSubmitComment = this.handleSubmitComment.bind(this);
@@ -46,6 +47,10 @@ class singleProductCotainer extends React.Component {
   }
   handleSubmitComment(e) {
     e.preventDefault();
+    this.setState({
+      contador2: this.state.contador2 + 1
+    })
+    console.log(this.state.contador2)
     axios
       .post("/api/products/" + this.props.id + "/comments", {        
         content: this.state.comentario,
