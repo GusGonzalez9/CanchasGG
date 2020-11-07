@@ -3,7 +3,7 @@ import style from "./LoginStyle.css";
 
 const Login = (props) => {
   return (
-    <div>
+    <div className={style.container}>
       <div className={style.register}></div>
       <div className={style.grad}></div>
       <div className={style.header}>
