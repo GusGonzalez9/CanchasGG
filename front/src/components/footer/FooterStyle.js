@@ -6,7 +6,7 @@ const style = {
     justifyContent: "center",
     alingItems: "center",
     fontFamily: "Roboto , sans-serif",
-    boxShadow: "0px 5px 10px 0px",
+    boxShadow: "0px -7px 14px -13px",
     width: "100%",
   },
   contened2: {

@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: "red",
   },
+  lnk: {
+    textDecoration: "none",
+    color: "white",
+  },
   root: {
     flexGrow: 1,
   },
@@ -28,15 +32,13 @@ const useStyles = makeStyles((theme) => ({
   title: {
     display: "none",
     [theme.breakpoints.up("sm")]: {
-      display: "block", 
-      fontFamily: 'Staatliches, cursive',
+      display: "block",
+      fontFamily: "Staatliches, cursive",
       fontSize: 35,
-      backgroundColor:'#F9C312',
-      padding: '0px 5px',
-      borderRadius:5,
-      textShadow:'2px 2px grey',
-     
-      
+      backgroundColor: "#F9C312",
+      padding: "0px 5px",
+      borderRadius: 5,
+      textShadow: "2px 2px grey",
     },
   },
   search: {
@@ -102,6 +104,10 @@ export default function PrimarySearchAppBar(props) {
     setAnchorEl(event.currentTarget);
   };
 
+  const handleProductsMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -126,8 +132,8 @@ export default function PrimarySearchAppBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>req.user.name</MenuItem>
+      <MenuItem onClick={handleMenuClose}>req.user.cart</MenuItem>
     </Menu>
   );
 
@@ -161,14 +167,18 @@ export default function PrimarySearchAppBar(props) {
       <div className={classes.grow}>
         <AppBar position="static" style={style.AppBar}>
           <Toolbar>
-            <Typography className={classes.title} variant="h6" noWrap>
-            •1905•
-            </Typography>
+            <Link className={classes.lnk} to="/">
+              <Typography className={classes.title} variant="h6" noWrap>
+                •1905•
+              </Typography>
+            </Link>
+
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
+                onChange={props.onChange}
                 placeholder="Search…"
                 classes={{
                   root: classes.inputRoot,
@@ -218,8 +228,6 @@ export default function PrimarySearchAppBar(props) {
                 aria-controls={menuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
-
-                
                 src="https://bocashop.vteximg.com.br/arquivos/account.png"
                 alt=""
                 srcset=""
@@ -231,13 +239,10 @@ export default function PrimarySearchAppBar(props) {
                 aria-controls={menuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
-
                 src="http://www.bocashop.vteximg.com.br/arquivos/minicart-bocashop-2.png"
-                
                 alt=""
                 srcset=""
               />
-              
             </div>
             <div className={classes.sectionMobile}>
               <IconButton
@@ -257,14 +262,73 @@ export default function PrimarySearchAppBar(props) {
       </div>
       <div className={classes.root}>
         <AppBar position="static" style={style.AppBar2}>
-          <ul style={style.NavBarList}>
-            <li style={style.Item}>Productos</li>
-            <li style={style.Item}>Promociones </li>
-            <li style={style.Item}>Marcas </li>
-            <li style={style.Item}>Servicios </li>
-            <li style={style.Item}>Tienda </li>
-            <li style={style.Item}>Ayuda </li>
-          </ul>
+          <div style={style.NavBarList}>
+            <Link to={"/product/all"}>
+              <Button
+                style={style.Item}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+              >
+                productos
+              </Button>
+            </Link>
+            <Link to={"/product/tshirt"}>
+              <Button
+                style={style.Item}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+              >
+                remeras
+              </Button>
+            </Link>
+            <Link to={"/product/pants"}>
+              <Button
+                style={style.Item}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+              >
+                pantalones
+              </Button>
+            </Link>
+
+            <Link to={"/product/socks"}>
+              <Button
+                style={style.Item}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+              >
+                medias
+              </Button>
+            </Link>
+
+            <Link to={"/product/trademarks"}>
+              <Button
+                style={style.Item}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+              >
+                marcas
+              </Button>
+            </Link>
+            <Link to={"/help"}>
+              <Button
+                style={style.Item}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+              >
+                ayuda
+              </Button>
+            </Link>
+            <Link to={"/contactus"}>
+              <Button
+                style={style.Item}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+              >
+                contacto
+              </Button>
+            </Link>
+          </div>
         </AppBar>
       </div>
     </div>
