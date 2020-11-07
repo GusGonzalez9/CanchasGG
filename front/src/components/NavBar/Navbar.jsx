@@ -28,7 +28,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     display: "none",
     [theme.breakpoints.up("sm")]: {
-      display: "block",
+      display: "block", 
+      fontFamily: 'Staatliches, cursive',
+      fontSize: 35,
+      backgroundColor:'#F9C312',
+      padding: '0px 5px',
+      borderRadius:5,
+      textShadow:'2px 2px grey',
+     
+      
     },
   },
   search: {
@@ -154,7 +162,7 @@ export default function PrimarySearchAppBar(props) {
         <AppBar position="static" style={style.AppBar}>
           <Toolbar>
             <Typography className={classes.title} variant="h6" noWrap>
-              1905
+            •1905•
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -210,20 +218,26 @@ export default function PrimarySearchAppBar(props) {
                 aria-controls={menuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
+
+                
                 src="https://bocashop.vteximg.com.br/arquivos/account.png"
                 alt=""
                 srcset=""
               />
-              <IconButton
+              <img
+                style={style.buttonUser}
                 edge="end"
                 aria-label="account of current user"
                 aria-controls={menuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
+
+                src="http://www.bocashop.vteximg.com.br/arquivos/minicart-bocashop-2.png"
+                
+                alt=""
+                srcset=""
+              />
+              
             </div>
             <div className={classes.sectionMobile}>
               <IconButton
