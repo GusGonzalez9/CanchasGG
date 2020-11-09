@@ -1,4 +1,13 @@
-import {SET_MY_CART, SET_CARTS, SELECT_CART, ADD_ORDER, REMOVE_ORDER} from '../constants'
+import {
+    SET_MY_CART,
+    ADD_ORDER,
+    UPDATE_ORDER,
+    REMOVE_ORDER,
+    SET_CARTS,
+    ADD_CART,
+    SELECT_CART,
+} from '../constants'
+
 import axios from 'axios'
 
 // SET_MY_CART
@@ -21,12 +30,23 @@ export const addOrder = (cartId, productId, units) => dispatch => {
     .then(res => dispatch(addOrderToMyCart(res.data)))
 }
 
+// UPDATE_ORDER
+const updateOrderinMyCart = (index, units) => ({
+    type: UPDATE_ORDER,
+    index,
+    units,
+})
+export const updateOrder = (index, orderId, units) => dispatch => {
+    axios.put(`/api/carts/orders/${orderId}`, {units})
+    .then(res => dispatch(updateOrderinMyCart(index, res.data.units)))
+}
+
 // REMOVE_ORDER
 const removeOrderFromMyCart = (id) => ({
     type: REMOVE_ORDER,
     id
 })
-export const removeOrder = (id) => {
+export const removeOrder = (id) => dispatch => {
     axios.delete(`/api/carts/orders/${id}`)
     .then(() => dispatch(removeOrderFromMyCart(id)))
 }
@@ -36,18 +56,22 @@ export const setCarts = (list) => ({
     type: SET_CARTS,
     list,
 })
-
 export const fetchCarts = () => dispatch => {
     axios.get('/api/carts/')
     .then(res => dispatch(setCarts(res.data)))
 }
+
+// ADD_CART
+export const addCartToMyList = (cart) => ({
+    type: ADD_CART,
+    cart,
+})
 
 // SELECT_CART
 const selectCart = (selectedCart) => ({
     type: SELECT_CART,
     selectedCart,
 })
-
 export const fetchSelectedCart = id => dispatch => {
     axios.get(`/api/carts/${id}`)
     .then(res => dispatch(selectCart(res.data)))

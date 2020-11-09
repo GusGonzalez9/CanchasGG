@@ -11,43 +11,39 @@ import singleProductContainer from "./components/singleProduct/singleProductCont
 import HomeContainer from "./components/Home/HomeContainer";
 import ProductsContainer from "./components/Products/ProductsContainer";
 import Contactus from "./components/Contactus/Contactus";
-/* import MyCartContainer from "./components/MyCart/MyCartContainer"; */
+import MyCartContainer from "./components/MyCart/MyCartContainer";
 
-import { hiUser } from "./store/action-creators/users";
-import { fetchMyCart } from "./store/action-creators/carts";
+import {hiUser} from './store/action-creators/users'
+import {fetchMyCart, fetchCarts} from './store/action-creators/carts'
 
-const mapDispatchToProps = (dispatch) => ({
-  hiUser: () => dispatch(hiUser()),
-  fetchMyCart: () => dispatch(fetchMyCart()),
-});
+const mapDispatchToProps = dispatch => ({
+    hiUser: ()=> dispatch(hiUser()),
+    fetchMyCart: ()=> dispatch(fetchMyCart()),
+    fetchCarts: ()=> dispatch(fetchCarts()),
+})
 
 class Main extends React.Component {
-  componentDidMount() {
-    this.props
-      .hiUser()
-      .then(() => console.log("ACA VA EL DE LA LINEA DE ABAJO, PERRITO"));
-    this.props.fetchMyCart();
+  
+  componentDidMount(){
+    this.props.hiUser().then(() => console.log('ACA VA EL DE LA LINEA DE ABAJO, PERRITO'))
+    this.props.fetchMyCart()
+    this.props.fetchCarts()
     //ACA HAY QUE ARREGLAR
   }
 
   render() {
     return (
       <>
-        <NavbarContainer />
-        <Switch>
-          <Route exact path="/" component={HomeContainer} />
-          <Route
-            exact
-            path="/products/:id"
-            component={singleProductContainer}
-          />
-          <Route
-            exact
-            path="/product/:category"
-            component={ProductsContainer}
-          />
+
+        <NavbarContainer/>
+        <Switch>  
+          <Route exact path="/" component={HomeContainer}/>
+          <Route exact path="/products/:id" component={singleProductContainer}/>
+          <Route path="/mycart" component={MyCartContainer}/>
+          <Route exact path="/products/:id" component={singleProductContainer}/>
+          <Route exact path="/product/:category" component={ProductsContainer}/>
+          <Route exact path="/help" component={Help} />
           <Route exact path="/contactus" component={Contactus} />
-          {/*  <Route path="/carts/mycart" component={MyCartContainer}/> */}
         </Switch>
         <PreContainer />
         <FooterContainer />

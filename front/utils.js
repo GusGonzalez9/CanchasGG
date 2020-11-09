@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const getRate = (rates) => {
   let sum = 0;
   rates.forEach((e) => {
@@ -23,13 +25,23 @@ const isInCart = (cart, productId) => {
 }
 */
 
-
-export const getValues = (orders) => {
+export const getTransactions = (orders) => {
   let total = 0
-  const prices = orders.map(o => {
+  const transactions = orders.map(o => {
     const subtotal = o.units * o.product.price
     total += subtotal 
-    return { id: o.id, subtotal }
+    return { 
+      id: o.id,
+      productId: o.product.id,
+      stock: o.product.stock - o.units,
+      subtotal 
+    }
   })
-  return {prices, total}
-}  
+  return {transactions, total}
+} 
+
+export const submitCart = (cartId, orders) => axios.put(`/api/carts/${cartId}`, getTransactions(orders))
+
+export const getStock = (stock, units) => ({
+  available: stock >= units, 
+  stock: stock >= units ? units : stock })
