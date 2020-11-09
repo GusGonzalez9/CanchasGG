@@ -9,9 +9,7 @@ const getUsers = (req, res, next) => {
 // SINGLE USER'S ROUTES
 const getSingleUser = (req, res, next) => {
   User.findByPk(req.params.id)
-    .then((user) =>
-      user.getFavorites().then((list) => res.send({ data: user, list }))
-    )
+    .then(user => res.send(user))
     .catch(next);
 };
 const addSingleUser = (req, res, next) => {

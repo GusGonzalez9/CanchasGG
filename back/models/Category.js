@@ -6,7 +6,8 @@ Category.init(
     {
         name: {
             type:S.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
     }, {sequelize: db, modelName: 'category'}
 )

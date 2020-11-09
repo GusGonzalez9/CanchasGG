@@ -2,7 +2,6 @@
 // Config
 import React from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
 // Components
 import OrderContainer from '../Order/OrderContainer'
 import Empty from '../Order/Empty'

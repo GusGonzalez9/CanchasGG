@@ -13,6 +13,9 @@ import ProductsContainer from "./components/Products/ProductsContainer";
 import Help from "./components/Help/Help";
 import Contactus from "./components/Contactus/Contactus";
 import MyCartContainer from "./components/MyCart/MyCartContainer";
+//RUTAS DE ADMIN, QUE HAY QUE UNIR EN UNA SOLA
+import AdminCategoriesContainer from "./components/AdminCategory/AdminCategoriesContainer";
+import AdminUsersContainer from "./components/AdminUser/AdminUsersContainer";
 
 import {hiUser} from './store/action-creators/users'
 import {fetchMyCart, fetchCarts} from './store/action-creators/carts'
@@ -44,6 +47,8 @@ class Main extends React.Component {
           <Route exact path="/product/:category" component={ProductsContainer}/>
           <Route exact path="/help" component={Help} />
           <Route exact path="/contactus" component={Contactus} />
+          <Route exact path="/admin/categories" component={AdminCategoriesContainer} />
+          <Route exact path="/admin/users" component={AdminUsersContainer} />
         </Switch>
         <PreContainer />
         <FooterContainer />

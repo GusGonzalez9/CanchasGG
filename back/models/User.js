@@ -25,10 +25,6 @@ User.init(
             type: S.TEXT,
             allowNull: false
         },
-        avatar: {
-            type: S.STRING,
-            allowNull: true,
-        },
         password: {
             type: S.STRING,
             allowNull: false

@@ -30,9 +30,7 @@ export default (state = initialState, action) => {
             newState.myCart.orders[action.index].units = action.units
         break
         case REMOVE_ORDER:
-            newState.myCart.orders = [
-                ... newState.myCart.orders.filter(o => 
-                    o.id != action.id)]
+            newState.myCart.orders = newState.myCart.orders.filter(o => o.id != action.id)
         break
         case SET_CARTS:
             newState.list = action.list
