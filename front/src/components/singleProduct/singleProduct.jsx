@@ -13,6 +13,8 @@ export default function singleProduct({
   handleImgChange,
   imagenPrincipal,
   contador,
+  deleteComment,
+  userAccess,
 }) {
   return (
     <div style={style.everyFather}>
@@ -69,20 +71,24 @@ export default function singleProduct({
             >
               Agregar al Carrito
             </Button>
-            <Button
-              variant="contained"
-              color="default"
-              style={style.buttonColorEdit}
-            >
-              Editar Producto
-            </Button>
-            <Button
-              variant="contained"
-              color="default"
-              style={style.buttonColorDelete}
-            >
-              Eliminar
-            </Button>
+            {userAccess == "admin" || userAccess == "super" ? (
+              <div>
+                <Button
+                  variant="contained"
+                  color="default"
+                  style={style.buttonColorEdit}
+                >
+                  Editar Producto
+                </Button>
+                <Button
+                  variant="contained"
+                  color="default"
+                  style={style.buttonColorDelete}
+                >
+                  Eliminar
+                </Button>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -112,15 +118,11 @@ export default function singleProduct({
         </div>
       </div>
       <hr style={style.hr} />
-      {console.log(
-        "HOLAAAAAA ESTO SON LOS COMENTARIOS",
-        product.comments
-      )}
+      {console.log("HOLAAAAAA ESTO SON LOS COMENTARIOS", product.comments)}
+
       {product.comments &&
         product.comments.map((comment) => {
-          
           return (
-
             <div>
               <div style={style.commentsBox}>
                 <img
@@ -131,17 +133,22 @@ export default function singleProduct({
 
                 <p>{comment.content}</p>
               </div>
-              <Button
-                variant="contained"
-                color="default"
-                style={style.buttonColorDelete}
-              >
-                Eliminar Comentario
-              </Button>
+              {userAccess == "admin" || userAccess == "super" ? (
+                <div>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    style={style.buttonColorDelete}
+                    /*                 onClick={deleteComment}
+                     */
+                  >
+                    Eliminar Comentario
+                  </Button>
+                </div>
+              ) : null}
+
               <hr style={style.hr} />
             </div>
-
-
           );
         })}
     </div>

@@ -10,7 +10,6 @@ import LoginContainer from "./components/Login/LoginContainer";
 import singleProductContainer from "./components/singleProduct/singleProductContainer";
 import HomeContainer from "./components/Home/HomeContainer";
 import ProductsContainer from "./components/Products/ProductsContainer";
-import Help from "./components/Help/Help";
 import Contactus from "./components/Contactus/Contactus";
 /* import MyCartContainer from "./components/MyCart/MyCartContainer"; */
 
@@ -47,7 +46,6 @@ class Main extends React.Component {
             path="/product/:category"
             component={ProductsContainer}
           />
-          <Route exact path="/help" component={Help} />
           <Route exact path="/contactus" component={Contactus} />
           {/*  <Route path="/carts/mycart" component={MyCartContainer}/> */}
         </Switch>

@@ -28,3 +28,4 @@ export const fetchSelectedProduct = (id) => (dispatch) => {
     .get(`/api/products/${id}`)
     .then((res) => dispatch(setSelectedProduct(res.data)));
 };
+
