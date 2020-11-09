@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect, component } from "react-router-dom";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 import NavbarContainer from "./components/NavBar/NavbarContainer";
 import PreContainer from "./components/prefooter/PreContainer";
@@ -8,8 +8,11 @@ import FooterContainer from "./components/footer/FooterContainer";
 import RegisterContainer from "./components/Register/RegisterContainer";
 import LoginContainer from "./components/Login/LoginContainer";
 import singleProductContainer from "./components/singleProduct/singleProductContainer";
-import HomeContainer from './components/Home/HomeContainer'
-import MyCartContainer from './components/MyCart/MyCartContainer'
+import HomeContainer from "./components/Home/HomeContainer";
+import ProductsContainer from "./components/Products/ProductsContainer";
+import Help from "./components/Help/Help";
+import Contactus from "./components/Contactus/Contactus";
+import MyCartContainer from "./components/MyCart/MyCartContainer";
 
 import {hiUser} from './store/action-creators/users'
 import {fetchMyCart, fetchCarts} from './store/action-creators/carts'
@@ -27,7 +30,7 @@ class Main extends React.Component {
     this.props.fetchMyCart()
     this.props.fetchCarts()
     //ACA HAY QUE ARREGLAR
-  }  
+  }
 
   render() {
     return (
@@ -37,6 +40,10 @@ class Main extends React.Component {
           <Route exact path="/" component={HomeContainer}/>
           <Route exact path="/products/:id" component={singleProductContainer}/>
           <Route path="/mycart" component={MyCartContainer}/>
+          <Route exact path="/products/:id" component={singleProductContainer}/>
+          <Route exact path="/product/:category" component={ProductsContainer}/>
+          <Route exact path="/help" component={Help} />
+          <Route exact path="/contactus" component={Contactus} />
         </Switch>
         <PreContainer />
         <FooterContainer />
@@ -49,4 +56,4 @@ class Main extends React.Component {
   }
 }
 
-export default connect(null,mapDispatchToProps)(Main);
+export default connect(null, mapDispatchToProps)(Main);

@@ -87,7 +87,7 @@ export default function singleProduct({
         </div>
       </div>
       <div style={style.commentBox}>
-        <span>3 Comentarios</span>
+        <span>Comentarios</span>
         <hr style={style.hr} />
         <div style={style.userCommentBox}>
           <img

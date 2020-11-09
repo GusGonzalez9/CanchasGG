@@ -13,7 +13,7 @@ class Slider extends React.Component {
         <img
           className="img-slider"
           width="100%"
-          height="380"
+          height="480"
           src={item.url}
         ></img>
       </Paper>
@@ -24,11 +24,15 @@ class Slider extends React.Component {
     var items = [
       {
         url:
-          "https://www.bocashop.com.ar/arquivos/3RA-Adidas_Banner-Desktop.jpg?v=637369264433430000",
+          "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esCL/Images/plp-mini-masthead-1920x480both_tcm211-450864.jpg",
       },
       {
         url:
-          "https://www.bocashop.com.ar/arquivos/slider-desk-1280x283-02.jpg?v=637390647302970000",
+          "https://binaryfortressdownloads.com/Download/WPF/Images/23546/WallpaperFusion-la-bombonera-1680x480.jpg",
+      },
+      {
+        url:
+          "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/esAR/Images/MINI_MH_DT_tcm216-569716.jpg",
       },
     ];
     return (
