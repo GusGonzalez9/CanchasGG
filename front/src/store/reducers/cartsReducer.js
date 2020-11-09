@@ -1,4 +1,12 @@
-import {SET_MY_CART, SET_CARTS, SELECT_CART, ADD_ORDER, REMOVE_ORDER} from '../constants'
+import {
+    SET_MY_CART,
+    ADD_ORDER,
+    UPDATE_ORDER,
+    REMOVE_ORDER,
+    SET_CARTS,
+    ADD_CART,
+    SELECT_CART,
+} from '../constants'
 
 const initialState = {
     myCart: {},
@@ -18,6 +26,9 @@ export default (state = initialState, action) => {
                     o.id != action.order.id),
                 action.order]
         break
+        case UPDATE_ORDER:
+            newState.myCart.orders[action.index].units = action.units
+        break
         case REMOVE_ORDER:
             newState.myCart.orders = [
                 ... newState.myCart.orders.filter(o => 
@@ -25,6 +36,9 @@ export default (state = initialState, action) => {
         break
         case SET_CARTS:
             newState.list = action.list
+        break
+        case ADD_CART:
+            newState.list = [... newState.list, action.cart]
         break
         case SELECT_CART:
             newState.selectedCart = action.selectedCart

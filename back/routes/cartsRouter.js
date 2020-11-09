@@ -13,7 +13,7 @@ const {
 
 router.get('/', getCarts)
 router.post('/orders', addProduct) // req.body = {cartId, productId, units}
-router.put('/orders/id', updateProduct)
+router.put('/orders/:id', updateProduct)
 router.delete('/orders/:id', deleteProduct)
 router.get('/current', hasCurrentCart, getSingleCart)
 router.get('/:id', hasSingleCart, getSingleCart)

@@ -19,6 +19,9 @@ Product.init(
     stock: {
       type: S.INTEGER,
       allowNull: false,
+      validate:{
+        min: 0,
+      }
     },
     off: {
       type: S.INTEGER,

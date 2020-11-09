@@ -12,11 +12,12 @@ import HomeContainer from './components/Home/HomeContainer'
 import MyCartContainer from './components/MyCart/MyCartContainer'
 
 import {hiUser} from './store/action-creators/users'
-import {fetchMyCart} from './store/action-creators/carts'
+import {fetchMyCart, fetchCarts} from './store/action-creators/carts'
 
 const mapDispatchToProps = dispatch => ({
     hiUser: ()=> dispatch(hiUser()),
     fetchMyCart: ()=> dispatch(fetchMyCart()),
+    fetchCarts: ()=> dispatch(fetchCarts()),
 })
 
 class Main extends React.Component {
@@ -24,6 +25,7 @@ class Main extends React.Component {
   componentDidMount(){
     this.props.hiUser().then(() => console.log('ACA VA EL DE LA LINEA DE ABAJO, PERRITO'))
     this.props.fetchMyCart()
+    this.props.fetchCarts()
     //ACA HAY QUE ARREGLAR
   }  
 
@@ -34,7 +36,7 @@ class Main extends React.Component {
         <Switch>  
           <Route exact path="/" component={HomeContainer}/>
           <Route exact path="/products/:id" component={singleProductContainer}/>
-          <Route path="/carts/mycart" component={MyCartContainer}/>
+          <Route path="/mycart" component={MyCartContainer}/>
         </Switch>
         <PreContainer />
         <FooterContainer />

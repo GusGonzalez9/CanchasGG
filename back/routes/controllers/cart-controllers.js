@@ -50,8 +50,9 @@ const getSingleCart = (req, res, next) => {
 // Submint cart
 const submitCart = (req, res, next) => {
     Promise.all(
-        req.body.prices.map(o => 
-            Order.update({subtotal: o.subtotal}, {where: {id: o.id}})
+        req.body.transactions.map(t => 
+            Order.update({subtotal: t.subtotal}, {where: {id: t.id}})
+            .then(Product.update({stock: t.stock}, {where: {id: t.productId}}))
         )
     )
     .then(() => {
@@ -69,25 +70,34 @@ const submitCart = (req, res, next) => {
 const addProduct = (req, res, next) => {
     const {cartId, productId, units} = req.body
     Purchase.findByPk(cartId)
-    .then(cart => cart.getOrders({where: {productId}, include:Product})
-        .then(orders => {
-            orders[0]
-            ? orders[0].update({units}).then(order => res.status(200).send(order))
-            : cart.createOrder({productId, units}).then(order => res.status(201).send(order))
-        })
-        .catch(next)
+    .then(cart => 
+        cart.status === 'completed'
+        ?   res.sendStatus(401)
+        :   cart.getOrders({where: {productId}, include:Product})
+            .then(orders => {
+                orders[0]
+                ? orders[0].update({units}).then(order => res.status(200).send(order))
+                : cart.createOrder({productId, units}).then(order => res.status(201).send(order))
+            })
     )
+    .catch(next)
 } 
 const updateProduct = (req, res, next) => {
-    Order.findByPk = (req.params.id)
-    .then(order => order.update(req.body))
-    .then((data) => res.send(data))
+    Order.findByPk(req.params.id, {include: Purchase})
+    .then( order => 
+        order.purchase.status === 'completed'
+        ? res.sendStatus(401)
+        : order.update(req.body)).then(order => res.send(order)
+    )
     .catch(next)
 }
 const deleteProduct = (req, res, next) => {
-    Order.findByPk(req.params.id)
-    .then(order => order.destroy())
-    .then(() => res.sendStatus(200))
+    Order.findByPk(req.params.id, {include: Purchase})
+    .then( order => 
+        order.purchase.status === 'completed'
+        ? res.sendStatus(401)
+        : order.destroy().then(() => res.sendStatus(200))
+    )
     .catch(next)
 }
 
