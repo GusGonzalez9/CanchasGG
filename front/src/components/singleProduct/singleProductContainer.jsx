@@ -3,14 +3,13 @@ import axios from "axios";
 import { connect } from "react-redux";
 import SingleProduct from "./singleProduct";
 import { fetchSelectedProduct } from "../../store/action-creators/products";
-
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
   const id = ownProps.match.params.id;
 
   return {
     product: state.products.selectedProduct,
     id,
+    userAccess: state.users.me.access,
   };
 };
 const mapDispatchToProps = function (dispatch) {
@@ -27,14 +26,12 @@ class singleProductCotainer extends React.Component {
       imagenPrincipal: "",
       contador: 0,
       carrito: "",
-      contador2: 0
     };
     this.commentChange = this.commentChange.bind(this);
     this.handleSubmitComment = this.handleSubmitComment.bind(this);
     this.handleImgChange = this.handleImgChange.bind(this);
-    
   }
- 
+
   handleImgChange(e) {
     this.setState({
       imagenPrincipal: e.currentTarget.src,
@@ -47,19 +44,30 @@ class singleProductCotainer extends React.Component {
   }
   handleSubmitComment(e) {
     e.preventDefault();
-    this.setState({
-      contador2: this.state.contador2 + 1
-    })
-    console.log(this.state.contador2)
     axios
-      .post("/api/products/" + this.props.id + "/comments", {        
+      .post("/api/products/" + this.props.id + "/comments", {
         content: this.state.comentario,
       })
-      .then((data) => console.log("COMENTARIO PUBLICADO", data));
+      .then((data) => console.log("seteado", console.log(data)));
   }
+
+  /*   deleteComment(e) {
+    e.preventDefault();
+    axios
+      .delete("/api/products/" + this.props.id + "/comments", {
+       
+        //ver como hacer referencia a ese comentario en particular para eliminarlo!!
+      })
+      .then((data) => console.log("COMENTARIO ELIMINADO", data));
+  } */
 
   componentDidMount() {
     this.props.fetchSelectedProduct(this.props.id);
+  }
+  componentDidUpdate(prevProps) {
+    this.props.id !== prevProps.id
+      ? this.props.fetchSelectedProduct(this.props.id)
+      : null;
   }
 
   render() {
@@ -72,6 +80,8 @@ class singleProductCotainer extends React.Component {
           handleImgChange={this.handleImgChange}
           imagenPrincipal={this.state.imagenPrincipal}
           contador={this.state.contador}
+          deleteComment={this.deleteComment}
+          userAccess={this.props.userAccess}
         />
       </div>
     );

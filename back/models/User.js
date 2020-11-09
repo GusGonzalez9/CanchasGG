@@ -42,7 +42,6 @@ User.init(
               }),
             defaultValue: 'basic',
             allowNull: false
-
         },
     }, {sequelize: db, modelName: 'user'}
 )

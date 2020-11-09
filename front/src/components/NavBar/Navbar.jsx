@@ -92,7 +92,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar(props) {
+export default function PrimarySearchAppBar({
+  handleInput,
+  LogoutUser,
+  userId,
+  filterProducts,
+  userAccess,
+}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -161,6 +167,7 @@ export default function PrimarySearchAppBar(props) {
       </MenuItem>
     </Menu>
   );
+  console.log("FILTRADOSSS", filterProducts);
 
   return (
     <div>
@@ -172,32 +179,75 @@ export default function PrimarySearchAppBar(props) {
                 •1905•
               </Typography>
             </Link>
-
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
+            <div style={style.search}>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  style={style.inputBase}
+                  onChange={(e) => handleInput(e)}
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                />
               </div>
-              <InputBase
-                onChange={props.onChange}
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
+              <div style={style.list}>
+                {filterProducts
+                  ? filterProducts.map((product) => {
+                      return (
+                        <div>
+                          <Link
+                            style={style.LinkSearch}
+                            to={`/products/${product.id}`}
+                          >
+                            <div style={style.Padre}>
+                              <img
+                                style={style.imagenDeProducto}
+                                src={
+                                  product.images && product.images[0]
+                                    ? `${product.images[0].url}`
+                                    : "https://www.newcasmont.com/12616-home_default/virulana-escobillon-rincones.jpg"
+                                }
+                              />
+                              <span style={style.productName}>
+                                {product.name}
+                              </span>
+                            </div>
+                          </Link>
+                          <hr></hr>
+                        </div>
+                      );
+                    })
+                  : null}
+              </div>
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              {props.userId ? (
-                <Button
-                  variant="contained"
-                  color="default"
-                  style={style.button}
-                  onClick={props.LogoutUser}
-                >
-                  Log Out
-                </Button>
+              {console.log("USER ACCESS", userAccess)}
+              {userId ? (
+                <div>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    style={style.button}
+                    onClick={LogoutUser}
+                  >
+                    Log Out
+                  </Button>
+                  {userAccess == "admin" || userAccess == "super" ? (
+                    <Button
+                      variant="contained"
+                      color="default"
+                      style={style.button}
+                    >
+                      Panel Admin
+                    </Button>
+                  ) : null}
+                </div>
               ) : (
                 <div>
                   <Button
