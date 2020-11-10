@@ -23,7 +23,7 @@ User.init(
         },
         adress: {
             type: S.TEXT,
-            allowNull: false
+            allowNull: true
         },
         password: {
             type: S.STRING,
@@ -38,7 +38,6 @@ User.init(
               }),
             defaultValue: 'basic',
             allowNull: false
-
         },
     }, {sequelize: db, modelName: 'user'}
 )

@@ -10,7 +10,6 @@ import LoginContainer from "./components/Login/LoginContainer";
 import singleProductContainer from "./components/singleProduct/singleProductContainer";
 import HomeContainer from "./components/Home/HomeContainer";
 import ProductsContainer from "./components/Products/ProductsContainer";
-import Help from "./components/Help/Help";
 import Contactus from "./components/Contactus/Contactus";
 import MyCartContainer from "./components/MyCart/MyCartContainer";
 //RUTAS DE ADMIN, QUE HAY QUE UNIR EN UNA SOLA
@@ -45,7 +44,7 @@ class Main extends React.Component {
           <Route path="/mycart" component={MyCartContainer}/>
           <Route exact path="/products/:id" component={singleProductContainer}/>
           <Route exact path="/product/:category" component={ProductsContainer}/>
-          <Route exact path="/help" component={Help} />
+          {/* <Route exact path="/help" component={Help} /> */}
           <Route exact path="/contactus" component={Contactus} />
           <Route exact path="/admin/categories" component={AdminCategoriesContainer} />
           <Route exact path="/admin/users" component={AdminUsersContainer} />
