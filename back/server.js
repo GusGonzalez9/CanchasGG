@@ -3,11 +3,7 @@ const app = express();
 const db = require("./db");
 const routes = require("./routes");
 
-//Auth requirementes
-const session = require("express-session");
-const cookieParser = require("cookie-parser");
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
+
 const { User } = require('./models')
 
 //Logging middleware
@@ -34,34 +30,7 @@ app.use(session({ secret: "bootcamp" }));
 app.use(passport.initialize());
 app.use(passport.session());
 // Local Strategy
-passport.use(
-  new LocalStrategy(
-    {
-      usernameField: "email",
-      passwordField: "password",
-    },
-    function (email, password, done) {
-      User.findOne({ where: { email } })
-        .then((user) => {
-          if (!user) return done(null, false);
-          user
-            .hashPassword(password, user.salt)
-            .then((hash) =>
-              hash !== user.password ? done(null, false) : done(null, user)
-            );
-        })
-        .catch(done);
-    }
-  )
-);
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-passport.deserializeUser((id, done) => {
-  User.findByPk(id)
-    .then((user) => done(null, user))
-    .catch(done);
-});
+
 
 //Router middleware
 app.use("/api", routes);
